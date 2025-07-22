@@ -1,0 +1,158 @@
+# in the future some of these templates can reference the ontology that is loaded
+# THe rest of these are directly copied from buildingMOTIF library
+
+
+duct:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    P:name a s223:Duct ;
+      s223:hasMedium s223:Fluid-Air ;
+      s223:connectsAt P:a, P:b .
+    # issue here is that 'connectsAt' requires a,b to be conn points
+    # but we can't instantiate that class directly *and* being a conn point
+    # involves other properties that must be included (e.g. hasmedium).
+    # TODO: how to solve this?
+    # P:a a s223:ConnectionPoint .
+    # P:b a s223:ConnectionPoint .
+
+
+
+sensor:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    P:name a s223:Sensor ;
+      s223:hasObservationLocation P:where ;
+      s223:observes P:property .
+  optional: ["where"]
+
+
+
+
+
+tank:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+    P:name a s223:Equipment ;
+      rdfs:label "Tank" .
+    # TODO: high-level and low-level statuses
+
+
+
+
+
+
+damper-command:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+    @prefix qudt: <http://qudt.org/schema/qudt/> .
+    @prefix unit: <http://qudt.org/vocab/unit/> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:QuantifiableActuatableProperty ;
+        qudt:hasQuantityKind quantitykind:DimensionlessRatio ;
+        qudt:hasUnit unit:PERCENT ;
+        s223:hasAspect s223:Binary-Position .
+
+damper-position:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+    @prefix qudt: <http://qudt.org/schema/qudt/> .
+    @prefix unit: <http://qudt.org/vocab/unit/> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:QuantifiableObservableProperty ;
+        qudt:hasQuantityKind quantitykind:DimensionlessRatio ;
+        qudt:hasUnit unit:PERCENT .
+
+
+
+air-temperature:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+    @prefix qudt: <http://qudt.org/schema/qudt/> .
+    @prefix unit: <http://qudt.org/vocab/unit/> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:QuantifiableObservableProperty ;
+        qudt:hasQuantityKind quantitykind:Temperature;
+        qudt:hasUnit unit:DEG_C .
+
+air-flow:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+    @prefix qudt: <http://qudt.org/schema/qudt/> .
+    @prefix unit: <http://qudt.org/vocab/unit/> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:QuantifiableObservableProperty ;
+        qudt:hasQuantityKind quantitykind:VolumeFlowRate;
+        qudt:hasUnit unit:FT3-PER-MIN .
+
+water-temperature:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+    @prefix qudt: <http://qudt.org/schema/qudt/> .
+    @prefix unit: <http://qudt.org/vocab/unit/> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:QuantifiableObservableProperty ;
+        qudt:hasQuantityKind quantitykind:Temperature;
+        qudt:hasUnit unit:DEG_C .
+
+water-flow:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+    @prefix qudt: <http://qudt.org/schema/qudt/> .
+    @prefix unit: <http://qudt.org/vocab/unit/> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:QuantifiableObservableProperty ;
+        qudt:hasQuantityKind quantitykind:VolumeFlowRate;
+        qudt:hasUnit unit:FT3-PER-MIN .
+
+
+
+run-status:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:EnumeratedObservableProperty ;
+      s223:hasEnumerationKind s223:EnumerationKind-RunStatus .
+
+flow-status:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:EnumeratedObservableProperty ;
+      s223:hasEnumerationKind s223:EnumerationKind-FlowStatus .
+    # TODO: add Flowstatus from g36 to s223
+
+relative-humidity:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+    @prefix qudt: <http://qudt.org/schema/qudt/> .
+    @prefix unit: <http://qudt.org/vocab/unit/> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:QuantifiableObservableProperty ;
+        qudt:hasQuantityKind quantitykind:RelativeHumidity ;
+        qudt:hasUnit unit:PERCENT_RH .
+
+
+
+
+

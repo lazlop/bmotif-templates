@@ -1,0 +1,447 @@
+multiple-zone-ahu:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:AirHandlingUnit, g36:MultipleZoneVAVAirHandlingUnit;
+      s223:cnx P:oa-in, P:sa-out, P:ra-in, P:ea-out, P:hot-water-in, P:hot-water-out, P:chilled-water-in, P:chilled-water-out;
+      s223:contains P:sa-fan, P:ra-fan, P:ra-damper, P:clg-coil, P:clg-coil-valve, P:htg-coil, P:htg-coil-valve, P:filter, P:ea-damper, P:minimum-oa-damper, P:economizer-oa-damper, P:return-exhaust-junction, P:outside-supply-junction, P:outside-air-junction .
+    
+    P:outside-supply-junction a s223:Junction ;
+      s223:hasMedium s223:Fluid-Air ;
+      s223:cnx P:outside-supply-junction-in-1, P:outside-supply-junction-in-2, P:outside-supply-junction-in-3, P:outside-supply-junction-out .
+
+    
+    P:ra-in s223:hasProperty P:ra-temp .
+    P:sa-out s223:hasProperty P:sa-temp, P:sa-temp-setpoint, P:supply-duct-static-pressure, P:supply-duct-static-pressure-setpoint .
+    P:ra-fan-out s223:hasProperty P:ra-fan-discharge-static-pressure .
+    P:minimum-oa-damper-out s223:hasProperty P:oa-flow .
+    P:oa-in s223:hasProperty P:oa-temp . 
+    P:filter-in s223:hasProperty P:ma-temp .
+    P:htg-coil-air-out s223:hasProperty P:heat-coil-air-temp .
+
+
+    P:sa-fan s223:hasRole s223:Role-Supply .
+    P:ea-damper s223:hasRole s223:Role-Exhaust .
+    P:ra-fan s223:hasRole s223:Role-Return .
+    P:ra-damper s223:hasRole s223:Role-Return .
+    P:economizer-oa-damper s223:hasRole s223:Role-Economizer .
+    P:minimum-oa-damper s223:hasRole s223:Role-OutdoorAirIntake .
+
+    P:ra-temp s223:hasAspect s223:Role-Return .
+    P:oa-temp s223:hasAspect s223:Role-OutdoorAirIntake .
+    P:sa-temp s223:hasAspect s223:Role-Supply .
+    P:supply-duct-static-pressure s223:hasAspect s223:Role-Supply .
+
+
+    P:sa-fan-speed-status a s223:QuantifiableObservableProperty .
+    P:sa-fan-power a s223:QuantifiableObservableProperty .
+    P:ra-fan-speed-status a s223:QuantifiableObservableProperty .
+    P:ra-fan-power a s223:QuantifiableObservableProperty .
+    P:filter-differential-pressure a s223:QuantifiableObservableProperty .
+
+
+    P:ra-damper-command a s223:QuantifiableActuatableProperty .
+    P:ea-damper-command a s223:QuantifiableActuatableProperty .
+    P:minimum-oa-damper-command a s223:QuantifiableActuatableProperty .
+    P:economizer-oa-damper-command a s223:QuantifiableActuatableProperty .
+
+    P:ra-fan s223:hasProperty P:ra-flow .
+    P:sa-fan s223:hasProperty P:sa-flow .
+    
+    P:ra-temp-sensor a s223:Sensor.
+    P:ra-flow-sensor a s223:Sensor.
+    P:ra-fan-static-pressure-sensor a s223:Sensor.
+    P:oa-temp-sensor a s223:Sensor.
+    P:ma-temp-sensor a s223:Sensor.
+    P:heat-coil-air-temp-sensor a s223:Sensor.
+    P:sa-flow-sensor a s223:Sensor.
+    P:sa-temp-sensor a s223:Sensor.
+    P:supply-duct-static-pressure-sensor a s223:Sensor.
+    P:filter-differential-pressure-sensor a s223:DifferentialSensor.
+    P:oa-flow-measurement-station a s223:Sensor.
+
+
+    P:ea-damper-actuator a s223:Actuator .
+    P:ra-damper-actuator a s223:Actuator .
+    P:minimum-oa-damper-actuator a s223:Actuator .
+    P:economizer-oa-damper-actuator a s223:Actuator .
+
+    
+
+    P:duct-ra-in a s223:Duct .
+    P:duct-oa-in a s223:Duct .
+    P:duct-ea-out a s223:Duct .
+    P:duct-sa-out a s223:Duct .
+    P:duct-after-ra-fan a s223:Duct .
+    P:duct-before-ea-damper a s223:Duct .
+    P:duct-before-ra-damper a s223:Duct .
+    P:duct-before-minimum-oa-damper a s223:Duct .
+    P:duct-before-economizer-oa-damper a s223:Duct .
+    P:duct-after-minimum-oa-damper a s223:Duct .
+    P:duct-after-economizer-oa-damper a s223:Duct .
+    P:duct-after-ra-damper a s223:Duct .
+    P:duct-before-filter a s223:Duct .
+    P:duct-after-filter a s223:Duct .
+    P:duct-after-htg-coil a s223:Duct .
+    P:duct-after-clg-coil a s223:Duct .
+
+
+    P:pipe-hot-water-supply a s223:Pipe . 
+    P:pipe-hot-water-return-before-valve a s223:Pipe .
+    P:pipe-hot-water-return-after-valve a s223:Pipe .
+    P:pipe-chilled-water-supply a s223:Pipe . 
+    P:pipe-chilled-water-return-before-valve a s223:Pipe .
+    P:pipe-chilled-water-return-after-valve a s223:Pipe .
+    
+    
+    P:outside-air-junction-in s223:mapsTo P:oa-in .    
+    P:ra-fan-in s223:mapsTo P:ra-in .
+    P:ea-damper-out s223:mapsTo P:ea-out .
+    P:sa-fan-out s223:mapsTo P:sa-out.
+
+    P:htg-coil-water-in s223:mapsTo P:hot-water-in .
+    P:htg-coil-valve-out s223:mapsTo P:hot-water-out .
+    P:clg-coil-water-in s223:mapsTo P:chilled-water-in .
+    P:clg-coil-valve-out s223:mapsTo P:chilled-water-out .
+
+    P:minimum-oa-damper-out a s223:OutletConnectionPoint .
+    P:filter-in a s223:InletConnectionPoint .
+
+
+
+
+  #optional: ["sa-fan-speed-status", "sa-fan-power", "ra-fan-speed-status", "ra-fan-power", "supply-duct-static-pressure-setpoint", "sa-temp-setpoint"]
+
+
+
+  dependencies:
+    - template: static-pressure-setpoint
+      args: {"name": "supply-duct-static-pressure-setpoint"}
+    - template: temp-setpoint
+      args: {"name": "sa-temp-setpoint"}
+
+
+    - template: variable-fan
+      args: {"name": "sa-fan", "in-connection": "duct-after-clg-coil", "out-connection": "duct-sa-out", "out": "sa-fan-out", "speed-status": "sa-fan-speed-status", "power": "sa-fan-power"}
+    - template: variable-fan
+      args: {"name": "ra-fan", "in-connection": "duct-ra-in", "out-connection": "duct-after-ra-fan", "in": "ra-fan-in", "speed-status": "ra-fan-speed-status", "power": "ra-fan-power", "out": "ra-fan-out"}
+
+
+
+    - template: damper
+      args: {"name": "ra-damper", "in-connection": "duct-before-ra-damper", "out-connection": "duct-after-ra-damper", "command": "ra-damper-command"}
+    - template: damper
+      args: {"name": "minimum-oa-damper", "in-connection": "duct-before-minimum-oa-damper", "out-connection": "duct-after-minimum-oa-damper", "out": "minimum-oa-damper-out", "command": "minimum-oa-damper-command"}
+    - template: damper
+      args: {"name": "ea-damper", "in-connection": "duct-before-ea-damper", "out-connection": "duct-ea-out", "out": "ea-damper-out", "command": "ea-damper-command"}
+    - template: damper
+      args: {"name": "economizer-oa-damper", "in-connection": "duct-before-economizer-oa-damper", "out-connection": "duct-after-economizer-oa-damper", "command": "economizer-oa-damper-command"}
+
+
+
+    - template: air-temperature
+      args: {"name": "heat-coil-air-temp"}
+    - template: air-flow
+      args: {"name": "sa-flow"}
+    - template: air-flow
+      args: {"name": "ra-flow"}
+    - template: air-flow
+      args: {"name": "oa-flow"}
+    - template: static-pressure
+      args: {"name": "ra-fan-discharge-static-pressure"}
+    - template: static-pressure
+      args: {"name": "supply-duct-static-pressure"}
+
+    - template: chilled-water-coil
+      args: {"name": "clg-coil", "air-in-connection": "duct-after-htg-coil", "air-out-connection": "duct-after-clg-coil", "water-in-connection": "pipe-chilled-water-supply", "water-out-connection": "pipe-chilled-water-return-before-valve"}
+    - template: hot-water-coil
+      args: {"name": "htg-coil", "air-in-connection": "duct-after-filter", "air-out-connection": "duct-after-htg-coil", "water-in-connection": "pipe-hot-water-supply", "water-out-connection": "pipe-hot-water-return-before-valve", "air-out": "htg-coil-air-out"}
+    - template: air-temperature
+      args: {"name": "sa-temp"}
+    - template: air-temperature
+      args: {"name": "oa-temp"}
+    - template: air-temperature
+      args: {"name": "ma-temp"}
+    - template: air-temperature
+      args: {"name": "ra-temp"}
+    - template: sensor
+      args: {"name": "sa-temp-sensor", "property": "sa-temp", "where": "sa-out"}
+    - template: sensor
+      args: {"name": "ra-temp-sensor", "property": "ra-temp", "where": "ra-in"}
+    - template: sensor
+      args: {"name": "oa-temp-sensor", "property": "oa-temp", "where": "minimum-oa-damper-out"}
+    - template: sensor
+      args: {"name": "ma-temp-sensor", "property": "ma-temp", "where": "filter-in"}
+    - template: sensor
+      args: {"name": "oa-flow-measurement-station", "property": "oa-flow", "where": "minimum-oa-damper-out"}
+
+    - template: filter
+      args: {"name": "filter", "in-connection": "duct-before-filter", "out-connection": "duct-after-filter", "differential-pressure-sensor": "filter-differential-pressure-sensor", "differential-pressure": "filter-differential-pressure", "in": "filter-in"}
+    - template: sensor
+      args: {"name": "ra-flow-sensor", "property": "ra-flow", "where": "ra-fan"}
+    - template: sensor
+      args: {"name": "sa-flow-sensor", "property": "sa-flow", "where": "sa-fan"}
+    - template: sensor
+      args: {"name": "heat-coil-air-temp-sensor", "property": "heat-coil-air-temp", "where": "duct-after-htg-coil"}
+    - template: sensor
+      args: {"name": "ra-fan-static-pressure-sensor", "property": "ra-fan-discharge-static-pressure", "where": "duct-after-ra-fan"}
+    - template: actuator
+      args: {"name": "ea-damper-actuator", "property": "ea-damper-command", "where": "ea-damper"}
+    - template: actuator
+      args: {"name": "ra-damper-actuator", "property": "ra-damper-command", "where": "ra-damper"}
+    - template: actuator
+      args: {"name": "minimum-oa-damper-actuator", "property": "minimum-oa-damper-command", "where": "minimum-oa-damper"}
+    - template: actuator
+      args: {"name": "economizer-oa-damper-actuator", "property": "economizer-oa-damper-command", "where": "economizer-oa-damper"}
+    - template: sensor
+      args: {"name": "supply-duct-static-pressure-sensor", "property": "supply-duct-static-pressure", "where": "duct-sa-out"}
+    - template: chw-valve
+      args: {"name": "clg-coil-valve", "in-connection": "pipe-chilled-water-return-before-valve", "out-connection": "pipe-chilled-water-return-after-valve"}
+    - template: hw-valve
+      args: {"name": "htg-coil-valve", "in-connection": "pipe-hot-water-return-before-valve", "out-connection": "pipe-hot-water-return-after-valve"}
+
+    - template: junction-air-diverge-directional
+      args: {"name": "return-exhaust-junction", "in-connection": "duct-after-ra-fan", "out-1-connection": "duct-before-ea-damper", "out-2-connection": "duct-before-ra-damper"}
+
+    - template: junction-air-diverge-directional
+      args: {"name": "outside-air-junction", "in-connection": "duct-oa-in", "out-1-connection": "duct-before-minimum-oa-damper", "out-2-connection": "duct-before-economizer-oa-damper", "in": "outside-air-junction-in"}
+
+    - template: air-outlet-cp
+      args: {"name": "outside-supply-junction-out", "connection": "duct-before-filter"}
+    - template: air-inlet-cp
+      args: {"name": "ra-fan-in", "connection": "duct-ra-in", "mapsto": "ra-in"}
+    - template: air-outlet-cp
+      args: {"name": "ea-damper-out", "connection": "duct-ea-out", "mapsto": "ea-out"}
+    - template: air-outlet-cp
+      args: {"name": "sa-fan-out", "connection": "duct-sa-out", "mapsto": "sa-out"}
+
+    - template: air-outlet-cp
+      args: {"name": "sa-out", "connection": "duct-sa-out"}
+    - template: air-inlet-cp
+      args: {"name": "oa-in", "connection": "duct-oa-in"}
+    - template: air-outlet-cp
+      args: {"name": "ea-out", "connection": "duct-ea-out"}
+    - template: air-inlet-cp
+      args: {"name": "ra-in", "connection": "duct-ra-in" }
+
+    - template: air-inlet-cp
+      args: {"name": "outside-supply-junction-in-1", "connection": "duct-after-ra-damper"}
+    - template: air-inlet-cp
+      args: {"name": "outside-supply-junction-in-2", "connection": "duct-after-minimum-oa-damper"}
+    - template: air-inlet-cp
+      args: {"name": "outside-supply-junction-in-3", "connection": "duct-after-economizer-oa-damper"}
+
+    - template: water-outlet-cp
+      args: {"name": "hot-water-out", "connection": "pipe-hot-water-return-after-valve"}
+    - template: water-inlet-cp
+      args: {"name": "hot-water-in", "connection": "pipe-hot-water-supply"}
+    - template: water-outlet-cp
+      args: {"name": "chilled-water-out", "connection": "pipe-chilled-water-return-after-valve"}
+    - template: water-inlet-cp
+      args: {"name": "chilled-water-in", "connection": "pipe-chilled-water-supply"}
+
+
+
+
+multiple-zone-ahu-office:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:AirHandlingUnit, g36:MultipleZoneVAVAirHandlingUnit;
+      s223:cnx P:oa-in, P:sa-out, P:ra-in, P:ea-out, P:chilled-water-in, P:chilled-water-out, P:hot-water-in, P:hot-water-out ;
+      s223:contains P:moisture-eliminator, P:sa-fan, P:ra-fan, P:ra-damper, P:clg-coil, P:clg-coil-valve, P:htg-coil, P:htg-coil-valve, P:air-filter, P:ea-damper, P:oa-damper, P:return-air-junction, P:mixed-air-junction .
+
+    P:ra-in s223:hasProperty P:ra-temp .
+    P:ra-fan-out s223:hasProperty P:ra-flow .
+    P:sa-out s223:hasProperty P:sa-temp, P:sa-temp-setpoint, P:supply-duct-static-pressure, P:supply-duct-static-pressure-setpoint .
+    P:oa-in s223:hasProperty P:oa-temp, P:oa-flow.
+    P:air-filter-in s223:hasProperty P:ma-temp .
+    P:sa-fan-out s223:hasProperty P:sa-flow .
+
+    P:sa-fan s223:hasRole s223:Role-Supply .
+    P:ra-fan s223:hasRole s223:Role-Return .
+    P:ra-damper s223:hasRole s223:Role-Return .
+    P:ea-damper s223:hasRole s223:Role-Exhaust .
+    P:oa-damper s223:hasRole s223:Role-OutdoorAirIntake, s223:Role-Economizer.
+
+    P:ra-temp s223:hasAspect s223:Role-Return .
+    P:ra-flow s223:hasAspect s223:Role-Return .
+    P:sa-temp s223:hasAspect s223:Role-Supply .
+    P:sa-flow s223:hasAspect s223:Role-Supply .
+    P:supply-duct-static-pressure s223:hasAspect s223:Role-Supply .
+    P:oa-temp s223:hasAspect s223:Role-OutdoorAirIntake .
+    P:oa-flow s223:hasAspect s223:Role-OutdoorAirIntake .
+    
+    P:ea-damper-command a s223:QuantifiableActuatableProperty .
+    P:ra-damper-command a s223:QuantifiableActuatableProperty .
+    P:oa-damper-command a s223:QuantifiableActuatableProperty .
+    
+    P:sa-fan-speed-status a s223:QuantifiableObservableProperty .
+    P:sa-fan-power a s223:QuantifiableObservableProperty .
+    P:ra-fan-speed-status a s223:QuantifiableObservableProperty .
+    P:ra-fan-power a s223:QuantifiableObservableProperty .
+
+
+    P:oa-in s223:cnx P:duct-oa-in .
+    P:sa-out s223:cnx P:duct-sa-out .
+    P:ra-in s223:cnx P:duct-ra-in .
+    P:ea-out s223:cnx P:duct-ea-out .
+
+    P:chilled-water-in s223:cnx P:pipe-chilled-water-supply .
+    P:chilled-water-out s223:cnx P:pipe-chilled-water-return-after-valve .
+    P:hot-water-in s223:cnx P:pipe-hot-water-supply .
+    P:hot-water-out s223:cnx P:pipe-hot-water-return-after-valve .
+
+    P:ra-temp-sensor a s223:Sensor.
+    P:ra-flow-sensor a s223:Sensor.
+    P:oa-temp-sensor a s223:Sensor.
+    P:oa-flow-sensor a s223:Sensor.
+    P:ma-temp-sensor a s223:Sensor.
+    P:sa-flow-sensor a s223:Sensor.
+    P:sa-temp-sensor a s223:Sensor.
+    P:supply-duct-static-pressure-sensor a s223:Sensor.
+
+    
+    P:ea-damper-actuator a s223:Actuator .
+    P:ra-damper-actuator a s223:Actuator .
+    P:oa-damper-actuator a s223:Actuator .
+
+    P:duct-ra-in a s223:Duct .
+    P:duct-ea-out a s223:Duct .
+    P:duct-oa-in a s223:Duct .
+    P:duct-sa-out a s223:Duct .
+    P:duct-after-ra-fan a s223:Duct .
+    P:duct-before-ea-damper a s223:Duct .
+    P:duct-before-ra-damper a s223:Duct .
+    P:duct-after-ra-damper a s223:Duct .
+    P:duct-after-moisture-eliminator a s223:Duct .
+    P:duct-after-oa-damper a s223:Duct .
+    P:duct-before-air-filter a s223:Duct .
+    P:duct-after-air-filter a s223:Duct .
+    P:duct-after-htg-coil a s223:Duct .
+    P:duct-after-clg-coil a s223:Duct .
+
+
+
+    P:pipe-hot-water-supply a s223:Pipe . 
+    P:pipe-hot-water-return-before-valve a s223:Pipe .
+    P:pipe-hot-water-return-after-valve a s223:Pipe .
+    P:pipe-chilled-water-supply a s223:Pipe . 
+    P:pipe-chilled-water-return-before-valve a s223:Pipe .
+    P:pipe-chilled-water-return-after-valve a s223:Pipe .
+
+
+    P:ra-fan-in s223:mapsTo P:ra-in .
+    P:ea-damper-out s223:mapsTo P:ea-out .
+    P:moisture-eliminator-in s223:mapsTo P:oa-in .
+    P:sa-fan-out s223:mapsTo P:sa-out.
+     
+     
+     
+    P:htg-coil-water-in s223:mapsTo P:hot-water-in .
+    P:htg-coil-valve-out s223:mapsTo P:hot-water-out .
+    P:clg-coil-water-in s223:mapsTo P:chilled-water-in .
+    P:clg-coil-valve-out s223:mapsTo P:chilled-water-out . 
+ 
+    
+
+#  optional: ["sa-fan-speed-status", "sa-fan-power", "ra-fan-speed-status", "ra-fan-power", "supply-duct-static-pressure-setpoint", "sa-temp-setpoint"]
+
+  dependencies:
+    - template: static-pressure-setpoint
+      args: {"name": "supply-duct-static-pressure-setpoint"}
+    - template: temp-setpoint
+      args: {"name": "sa-temp-setpoint"}
+    - template: chw-valve
+      args: {"name": "clg-coil-valve", "in-connection": "pipe-chilled-water-return-before-valve", "out-connection": "pipe-chilled-water-return-after-valve", "out": "clg-coil-valve-out"}
+    - template: hw-valve
+      args: {"name": "htg-coil-valve", "in-connection": "pipe-hot-water-return-before-valve", "out-connection": "pipe-hot-water-return-after-valve", "out": "htg-coil-valve-out"}
+    - template: filter
+      args: {"name": "moisture-eliminator", "in-connection": "duct-oa-in", "out-connection": "duct-after-moisture-eliminator", "in": "moisture-eliminator-in"}
+    - template: variable-fan
+      args: {"name": "sa-fan", "in-connection": "duct-after-clg-coil", "out-connection": "duct-sa-out", "out": "sa-fan-out", "speed-status": "sa-fan-speed-status", "power": "sa-fan-power", "in": "sa-fan-in"}
+    - template: variable-fan
+      args: {"name": "ra-fan", "in-connection": "duct-ra-in", "out-connection": "duct-after-ra-fan", "in": "ra-fan-in", "speed-status": "ra-fan-speed-status", "power": "ra-fan-power"}
+
+
+
+    - template: damper
+      args: {"name": "ra-damper", "in-connection": "duct-before-ra-damper", "out-connection": "duct-after-ra-damper", "command": "ra-damper-command"}
+    - template: damper
+      args: {"name": "oa-damper", "in-connection": "duct-after-moisture-eliminator", "out-connection": "duct-after-oa-damper", "command": "oa-damper-command", "in": "oa-damper-in"}
+    - template: damper
+      args: {"name": "ea-damper", "in-connection": "duct-before-ea-damper", "out-connection": "duct-ea-out", "out": "ea-damper-out", "command": "ea-damper-command"}
+    - template: chilled-water-coil
+      args: {"name": "clg-coil", "air-in-connection": "duct-after-htg-coil", "air-out-connection": "duct-after-clg-coil", "water-in-connection": "pipe-chilled-water-supply", "water-out-connection": "pipe-chilled-water-return-before-valve", "water-in": "clg-coil-water-in"}
+    - template: hot-water-coil
+      args: {"name": "htg-coil", "air-in-connection": "duct-after-air-filter", "air-out-connection": "duct-after-htg-coil", "water-in-connection": "pipe-hot-water-supply", "water-out-connection": "pipe-hot-water-return-before-valve", "water-in": "htg-coil-water-in"}
+
+    - template: filter
+      args: {"name": "air-filter", "in-connection": "duct-before-air-filter", "out-connection": "duct-after-air-filter", "in": "air-filter-in"}
+    - template: air-flow
+      args: {"name": "oa-flow"}
+    - template: air-flow
+      args: {"name": "sa-flow"}
+    - template: air-flow
+      args: {"name": "ra-flow"}
+    - template: static-pressure
+      args: {"name": "supply-duct-static-pressure"}
+
+    - template: air-outlet-cp
+      args: {"name": "sa-out", "connection": "duct-sa-out"}
+    - template: air-inlet-cp
+      args: {"name": "oa-in", "connection": "duct-oa-in"}
+    - template: air-outlet-cp
+      args: {"name": "ea-out", "connection": "duct-ea-out"}
+    - template: air-inlet-cp
+      args: {"name": "ra-in", "connection": "duct-ra-in" }
+
+    - template: water-inlet-cp
+      args: {"name": "chilled-water-in", "connection": "pipe-chilled-water-supply"}
+    - template: water-inlet-cp
+      args: {"name": "hot-water-in", "connection": "pipe-hot-water-supply"}
+    - template: water-outlet-cp
+      args: {"name": "chilled-water-out", "connection": "pipe-chilled-water-return-after-valve"}
+    - template: water-outlet-cp
+      args: {"name": "hot-water-out", "connection": "pipe-hot-water-return-after-valve"}
+
+    - template: air-temperature
+      args: {"name": "sa-temp"}
+    - template: air-temperature
+      args: {"name": "oa-temp"}
+    - template: air-temperature
+      args: {"name": "ma-temp"}
+    - template: air-temperature
+      args: {"name": "ra-temp"}
+
+
+    - template: actuator
+      args: {"name": "ea-damper-actuator", "property": "ea-damper-command", "where": "ea-damper"}
+    - template: actuator
+      args: {"name": "ra-damper-actuator", "property": "ra-damper-command", "where": "ra-damper"}
+    - template: actuator
+      args: {"name": "oa-damper-actuator", "property": "oa-damper-command", "where": "oa-damper"}
+
+    - template: sensor
+      args: {"name": "sa-temp-sensor", "property": "sa-temp", "where": "sa-out"}
+    - template: sensor
+      args: {"name": "ra-temp-sensor", "property": "ra-temp", "where": "ra-in"}
+    - template: sensor
+      args: {"name": "oa-temp-sensor", "property": "oa-temp", "where": "oa-damper-in"}
+    - template: sensor
+      args: {"name": "ma-temp-sensor", "property": "ma-temp", "where": "air-filter-in"}
+
+    - template: sensor
+      args: {"name": "oa-flow-sensor", "property": "oa-flow", "where": "oa-damper-in"}
+    - template: sensor
+      args: {"name": "sa-flow-sensor", "property": "sa-flow", "where": "sa-fan-in"}
+    - template: sensor
+      args: {"name": "ra-flow-sensor", "property": "ra-flow", "where": "ra-in"}
+    - template: sensor
+      args: {"name": "supply-duct-static-pressure-sensor", "property": "supply-duct-static-pressure", "where": "sa-out"}
+    - template: junction-air-diverge-directional
+      args: {"name": "return-air-junction", "in-connection": "duct-after-ra-fan", "out-1-connection": "duct-before-ea-damper", "out-2-connection": "duct-before-ra-damper"}
+    - template: junction-air-converge-directional
+      args: {"name": "mixed-air-junction", "in-1-connection": "duct-after-oa-damper", "in-2-connection": "duct-after-ra-damper", "out-connection": "duct-before-air-filter"}
