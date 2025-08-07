@@ -7,3 +7,7 @@ These templates were used to support the deployment of a practical, low-cost, po
 ## Shapes
 
 These shapes have been generated from the defined templates for validation and inference. These shapes are used with a manifest to validate that a building has the expected systems as well as the points necessary to configure the MPC. The shapes also are used to infer annotations for all the properties within a model, aligning the semantic data model with an mpc specific data model. This has been used to align multiple ontologies and allow the MPC to be configured using either s223 or brick. These inferred annotations along with the templates are used to query an existing semantic model into python data classes, that provide a familiar interface for interacting with the data and configuring the MPC. 
+
+## Models
+
+The models directory includes an anonymized version of a small building modeled using these templates, where this application was deployed. 
