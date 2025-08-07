@@ -1,0 +1,127 @@
+
+dual-duct-terminal-unit-with-inlet-sensors:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:DualDuctTerminal, g36:DualDuctTerminalWithInletSensors ;
+      s223:contains P:hot-deck-damper, P:cold-deck-damper, P:junction ;
+      s223:cnx P:hot-deck-in, P:cold-deck-in, P:out .
+
+    P:hot-deck-in s223:hasProperty P:hot-deck-supply-air-flow .
+    P:cold-deck-in s223:hasProperty P:cold-deck-supply-air-flow .
+
+    P:hot-deck-supply-air-flow s223:hasAspect s223:Role-Supply, s223:Role-Heating .
+    P:cold-deck-supply-air-flow s223:hasAspect s223:Role-Supply, s223:Role-Cooling .
+    P:hot-deck-damper s223:hasRole s223:Role-Supply, s223:Role-Heating . 
+    P:cold-deck-damper s223:hasRole s223:Role-Supply, s223:Role-Cooling .
+
+    P:hot-deck-damper-command a s223:QuantifiableActuatableProperty .
+    P:cold-deck-damper-command a s223:QuantifiableActuatableProperty .
+
+    P:hot-deck-supply-air-flow-sensor a s223:Sensor .
+    P:cold-deck-supply-air-flow-sensor a s223:Sensor .
+
+    P:hot-deck-damper-actuator a s223:Actuator .
+    P:cold-deck-damper-actuator a s223:Actuator .
+
+    P:duct-before-hot-deck-damper a s223:Duct .
+    P:duct-before-cold-deck-damper a s223:Duct .
+    P:duct-after-hot-deck-damper a s223:Duct .
+    P:duct-after-cold-deck-damper a s223:Duct .
+    P:duct-after-junction a s223:Duct .
+ 
+    P:hot-deck-damper-in s223:mapsTo P:hot-deck-in .
+    P:cold-deck-damper-in s223:mapsTo P:cold-deck-in .
+    P:junction-out s223:mapsTo P:out .
+
+  dependencies:
+    - template: damper
+      args: {"name": "hot-deck-damper", "in-connection": "duct-before-hot-deck-damper", "out-connection": "duct-after-hot-deck-damper", "command": "hot-deck-damper-command", "in": "hot-deck-damper-in"}
+    - template: damper
+      args: {"name": "cold-deck-damper", "in-connection": "duct-before-cold-deck-damper", "out-connection": "duct-after-cold-deck-damper", "command": "cold-deck-damper-command", "in": "cold-deck-damper-in"}
+
+    - template: air-outlet-cp
+      args: {"name": "out", "connection": "duct-after-junction"}
+    - template: air-inlet-cp
+      args: {"name": "hot-deck-in", "connection": "duct-before-hot-deck-damper"}
+    - template: air-inlet-cp
+      args: {"name": "cold-deck-in", "connection": "duct-before-cold-deck-damper"}
+
+    - template: sensor
+      args: {"name": "hot-deck-supply-air-flow-sensor", "property": "hot-deck-supply-air-flow", "where": "hot-deck-in"}
+    - template: sensor
+      args: {"name": "cold-deck-supply-air-flow-sensor", "property": "cold-deck-supply-air-flow", "where": "cold-deck-in"}
+
+    - template: actuator
+      args: {"name": "hot-deck-damper-actuator", "property": "hot-deck-damper-command", "where": "hot-deck-damper"}
+    - template: actuator
+      args: {"name": "cold-deck-damper-actuator", "property": "cold-deck-damper-command", "where": "cold-deck-damper"}
+
+    - template: air-flow
+      args: {"name": "hot-deck-supply-air-flow"}
+    - template: air-flow
+      args: {"name": "cold-deck-supply-air-flow"}
+
+    - template: junction-air-converge-directional
+      args: {"name": "junction", "in-1-connection": "duct-after-hot-deck-damper", "in-2-connection": "duct-after-cold-deck-damper", "out-connection": "duct-after-junction", "out": "junction-out"}
+
+
+dual-duct-terminal-unit-with-discharge-sensor:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:DualDuctTerminal, g36:DualDuctTerminalWithDischargeSensor ;
+      s223:contains P:hot-deck-damper, P:cold-deck-damper, P:junction;
+      s223:cnx P:hot-deck-in, P:cold-deck-in, P:out .
+
+    P:out s223:hasProperty P:discharge-air-flow .
+
+    P:discharge-air-flow s223:hasAspect s223:Role-Discharge.
+    P:hot-deck-damper s223:hasRole s223:Role-Supply, s223:Role-Heating . 
+    P:cold-deck-damper s223:hasRole s223:Role-Supply, s223:Role-Cooling .
+
+    P:hot-deck-damper-command a s223:QuantifiableActuatableProperty .
+    P:cold-deck-damper-command a s223:QuantifiableActuatableProperty .
+
+    P:discharge-air-flow-sensor a s223:Sensor .
+
+    P:hot-deck-damper-actuator a s223:Actuator .
+    P:cold-deck-damper-actuator a s223:Actuator .
+
+    P:duct-before-hot-deck-damper a s223:Duct .
+    P:duct-before-cold-deck-damper a s223:Duct .
+    P:duct-after-hot-deck-damper a s223:Duct .
+    P:duct-after-cold-deck-damper a s223:Duct .
+    P:duct-after-junction a s223:Duct .
+ 
+    P:hot-deck-damper-in s223:mapsTo P:hot-deck-in .
+    P:cold-deck-damper-in s223:mapsTo P:cold-deck-in .
+    P:junction-out s223:mapsTo P:out .
+
+  dependencies:
+    - template: damper
+      args: {"name": "hot-deck-damper", "in-connection": "duct-before-hot-deck-damper", "out-connection": "duct-after-hot-deck-damper", "command": "hot-deck-damper-command", "in": "hot-deck-damper-in"}
+    - template: damper
+      args: {"name": "cold-deck-damper", "in-connection": "duct-before-cold-deck-damper", "out-connection": "duct-after-cold-deck-damper", "command": "cold-deck-damper-command", "in": "cold-deck-damper-in"}
+
+    - template: air-outlet-cp
+      args: {"name": "out", "connection": "duct-after-junction"}
+    - template: air-inlet-cp
+      args: {"name": "hot-deck-in", "connection": "duct-before-hot-deck-damper"}
+    - template: air-inlet-cp
+      args: {"name": "cold-deck-in", "connection": "duct-before-cold-deck-damper"}
+
+    - template: sensor
+      args: {"name": "discharge-air-flow-sensor", "property": "discharge-air-flow", "where": "out"}
+
+    - template: actuator
+      args: {"name": "hot-deck-damper-actuator", "property": "hot-deck-damper-command", "where": "hot-deck-damper"}
+    - template: actuator
+      args: {"name": "cold-deck-damper-actuator", "property": "cold-deck-damper-command", "where": "cold-deck-damper"}
+
+    - template: air-flow
+      args: {"name": "discharge-air-flow"}
+    - template: junction-air-converge-directional
+      args: {"name": "junction", "in-1-connection": "duct-after-hot-deck-damper", "in-2-connection": "duct-after-cold-deck-damper", "out-connection": "duct-after-junction", "out": "junction-out"}

@@ -1,0 +1,171 @@
+parallel-fan-powered-terminal-unit-constant-volume-fan:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:FanPoweredTerminal, g36:FanPoweredTerminal;
+      s223:contains P:damper, P:fan, P:reheat-coil, P:reheat-coil-valve, P:junction;
+      s223:cnx P:supply-air-in, P:return-air-from-plenum-in, P:air-out, P:hot-water-in, P:hot-water-out  .
+
+    P:supply-air-in s223:hasProperty P:supply-air-flow .
+    P:air-out s223:hasProperty P:discharge-air-temp .
+
+    P:supply-air-flow s223:hasAspect s223:Role-Supply .
+    P:discharge-air-temp s223:hasAspect s223:Role-Discharge .
+
+    P:damper-command a s223:QuantifiableActuatableProperty .
+    P:reheat-coil-valve-command a s223:QuantifiableActuatableProperty .
+
+    P:supply-air-flow-sensor a s223:Sensor .
+    P:discharge-air-temp-sensor a s223:Sensor .
+
+    P:damper-actuator a s223:Actuator .
+    P:reheat-coil-valve-actuator a s223:Actuator .
+
+    P:duct-before-damper a s223:Duct .
+    P:duct-after-damper a s223:Duct .
+    P:duct-after-fan a s223:Duct .
+    P:duct-before-reheat-coil a s223:Duct .
+    P:duct-after-reheat-coil a s223:Duct .
+    P:duct-after-junction a s223:Duct .
+ 
+
+    P:damper-in s223:mapsTo P:supply-air-in .
+    P:reheat-coil-air-in s223:mapsTo P:return-air-from-plenum-in .
+    P:junction-out s223:mapsTo P:air-out . 
+
+
+    P:pipe-hot-water-supply a s223:Pipe . 
+    P:pipe-hot-water-return-before-valve a s223:Pipe .
+    P:pipe-hot-water-return-after-valve a s223:Pipe .
+
+    P:reheat-coil-water-in s223:mapsTo P:hot-water-in . 
+    P:reheat-coil-valve-out s223:mapsTo P:hot-water-out .
+
+  dependencies:
+    - template: damper
+      args: {"name": "damper", "in-connection": "duct-before-damper", "out-connection": "duct-after-damper", "command": "damper-command", "in": "damper-in"}
+    - template: hw-valve
+      args: {"name": "reheat-coil-valve", "in-connection": "pipe-hot-water-return-before-valve", "out-connection": "pipe-hot-water-return-after-valve"}
+    - template: hot-water-coil
+      args: {"name": "reheat-coil", "air-in-connection": "duct-before-reheat-coil", "air-out-connection": "duct-after-reheat-coil", "water-in-connection": "pipe-hot-water-supply", "water-out-connection": "pipe-hot-water-return-before-valve", "air-in": "reheat-coil-air-in"}
+    - template: constant-fan
+      args: {"name": "fan", "in-connection": "duct-after-reheat-coil", "out-connection": "duct-after-fan"}
+
+    - template: air-outlet-cp
+      args: {"name": "air-out", "connection": "duct-after-junction"}
+    - template: air-inlet-cp
+      args: {"name": "return-air-from-plenum-in", "connection": "duct-before-reheat-coil"}
+    - template: air-inlet-cp
+      args: {"name": "supply-air-in", "connection": "duct-before-damper"}
+
+    - template: water-outlet-cp
+      args: {"name": "hot-water-out", "connection": "pipe-hot-water-return-after-valve"}
+    - template: water-inlet-cp
+      args: {"name": "hot-water-in", "connection": "pipe-hot-water-supply"}
+
+    - template: sensor
+      args: {"name": "supply-air-flow-sensor", "property": "supply-air-flow", "where": "supply-air-in"}
+    - template: sensor
+      args: {"name": "discharge-air-temp-sensor", "property": "discharge-air-temp", "where": "air-out"}
+    
+    - template: actuator
+      args: {"name": "damper-actuator", "property": "damper-command", "where": "damper"}
+    - template: actuator
+      args: {"name": "reheat-coil-valve-actuator", "property": "reheat-coil-valve-command", "where": "reheat-coil-valve"}
+
+    - template: air-flow
+      args: {"name": "supply-air-flow"}
+    - template: air-temperature
+      args: {"name": "discharge-air-temp"}
+    - template: junction-air-converge-directional
+      args: {"name": "junction", "in-1-connection": "duct-after-damper", "in-2-connection": "duct-after-fan", "out-connection": "duct-after-junction", "out": "junction-out"}
+
+
+
+
+parallel-fan-powered-terminal-unit-variable-volume-fan:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:FanPoweredTerminal, g36:FanPoweredTerminal;
+      s223:contains P:damper, P:fan, P:reheat-coil, P:reheat-coil-valve, P:junction;
+      s223:cnx P:supply-air-in, P:return-air-from-plenum-in, P:air-out, P:hot-water-in, P:hot-water-out .
+
+
+    P:supply-air-in s223:hasProperty P:supply-air-flow .
+    P:air-out s223:hasProperty P:discharge-air-temp .
+
+    P:supply-air-flow s223:hasAspect s223:Role-Supply .
+    P:discharge-air-temp s223:hasAspect s223:Role-Discharge .
+
+    P:fan s223:hasProperty P:fan-speed-status .
+
+    P:damper-command a s223:QuantifiableActuatableProperty .
+    P:reheat-coil-valve-command a s223:QuantifiableActuatableProperty .
+
+    P:supply-air-flow-sensor a s223:Sensor .
+    P:discharge-air-temp-sensor a s223:Sensor .
+
+
+    P:damper-actuator a s223:Actuator .
+    P:reheat-coil-valve-actuator a s223:Actuator .
+
+    P:duct-before-damper a s223:Duct .
+    P:duct-after-damper a s223:Duct .
+    P:duct-after-fan a s223:Duct .
+    P:duct-before-reheat-coil a s223:Duct .
+    P:duct-after-reheat-coil a s223:Duct .
+    P:duct-after-junction a s223:Duct .
+ 
+
+    P:damper-in s223:mapsTo P:supply-air-in .
+    P:reheat-coil-air-in s223:mapsTo P:return-air-from-plenum-in .
+    P:junction-out s223:mapsTo P:air-out . 
+
+    P:pipe-hot-water-supply a s223:Pipe . 
+    P:pipe-hot-water-return-before-valve a s223:Pipe .
+    P:pipe-hot-water-return-after-valve a s223:Pipe .
+
+    P:reheat-coil-water-in s223:mapsTo P:hot-water-in . 
+    P:reheat-coil-valve-out s223:mapsTo P:hot-water-out .
+
+  dependencies:
+    - template: damper
+      args: {"name": "damper", "in-connection": "duct-before-damper", "out-connection": "duct-after-damper", "command": "damper-command", "in": "damper-in"}
+    - template: hw-valve
+      args: {"name": "reheat-coil-valve", "in-connection": "pipe-hot-water-return-before-valve", "out-connection": "pipe-hot-water-return-after-valve"}
+    - template: hot-water-coil
+      args: {"name": "reheat-coil", "air-in-connection": "duct-before-reheat-coil", "air-out-connection": "duct-after-reheat-coil", "water-in-connection": "pipe-hot-water-supply", "water-out-connection": "pipe-hot-water-return-before-valve", "air-in": "reheat-coil-air-in"}
+    - template: variable-fan
+      args: {"name": "fan", "in-connection": "duct-after-reheat-coil", "out-connection": "duct-after-fan", "speed-status": "fan-speed-status"}
+
+    - template: air-outlet-cp
+      args: {"name": "air-out", "connection": "duct-after-junction"}
+    - template: air-inlet-cp
+      args: {"name": "return-air-from-plenum-in", "connection": "duct-before-reheat-coil"}
+    - template: air-inlet-cp
+      args: {"name": "supply-air-in", "connection": "duct-before-damper"}
+
+    - template: water-outlet-cp
+      args: {"name": "hot-water-out", "connection": "pipe-hot-water-return-after-valve"}
+    - template: water-inlet-cp
+      args: {"name": "hot-water-in", "connection": "pipe-hot-water-supply"}
+
+    - template: sensor
+      args: {"name": "supply-air-flow-sensor", "property": "supply-air-flow", "where": "supply-air-in"}
+    - template: sensor
+      args: {"name": "discharge-air-temp-sensor", "property": "discharge-air-temp", "where": "air-out"}
+    
+    - template: actuator
+      args: {"name": "damper-actuator", "property": "damper-command", "where": "damper"}
+    - template: actuator
+      args: {"name": "reheat-coil-valve-actuator", "property": "reheat-coil-valve-command", "where": "reheat-coil-valve"}
+
+    - template: air-flow
+      args: {"name": "supply-air-flow"}
+    - template: air-temperature
+      args: {"name": "discharge-air-temp"}
+    - template: junction-air-converge-directional
+      args: {"name": "junction", "in-1-connection": "duct-after-damper", "in-2-connection": "duct-after-fan", "out-connection": "duct-after-junction", "out": "junction-out"}

@@ -1,0 +1,394 @@
+
+junction-air-converge-directional:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    P:name a s223:Junction ;
+      s223:hasMedium s223:Fluid-Air ;
+      s223:cnx P:in-1, P:in-2, P:out .
+    
+    P:in-1 s223:cnx P:in-1-connection . 
+    P:in-2 s223:cnx P:in-2-connection . 
+    P:out s223:cnx P:out-connection .
+
+  dependencies:
+    - template: air-outlet-cp
+      args: {"name": "out", "connection": "out-connection"}
+    - template: air-inlet-cp
+      args: {"name": "in-1", "connection": "in-1-connection"}
+    - template: air-inlet-cp
+      args: {"name": "in-2", "connection": "in-2-connection"}
+
+
+junction-air-diverge-directional:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    P:name a s223:Junction ;
+      s223:hasMedium s223:Fluid-Air ;
+      s223:cnx P:in, P:out-1, P:out-2 .
+    
+    P:in s223:cnx P:in-connection . 
+    P:out-1 s223:cnx P:out-1-connection .
+    P:out-2 s223:cnx P:out-2-connection . 
+  dependencies:
+    - template: air-inlet-cp
+      args: {"name": "in", "connection": "in-connection"}
+    - template: air-outlet-cp
+      args: {"name": "out-1", "connection": "out-1-connection"}
+    - template: air-outlet-cp
+      args: {"name": "out-2", "connection": "out-2-connection"}
+
+g36-zone:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:Zone, g36:Zone;
+      s223:hasDomain s223:Domain-HVAC ;
+      s223:hasProperty P:temp, P:co2-concentration, P:window-switch-on-off, P:occupancy, P:temp-setpoint-adjustment .
+
+#  optional: ["co2-concentration", "window-switch-on-off", "occupancy", "temp-setpoint-override", "temp-setpoint-adjustment"]
+  optional: ["window-switch-on-off", "occupancy", "temp-setpoint-adjustment"]
+  dependencies:
+    - template: air-temperature
+      args: {"name": "temp"}
+    - template: co2-concentration
+      args: {"name": "co2-concentration"}
+    - template: switch-on-off
+      args: {"name": "window-switch-on-off"}
+    - template: zone-occupancy
+      args: {"name": "occupancy"}
+#    - template: override-signal
+#      args: {"name": "temp-setpoint-override"}
+    - template: temp-setpoint-adjustment-value
+      args: {"name": "temp-setpoint-adjustment"}
+
+# need to add window sensor to space
+g36-physical-space:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+    @prefix qudt: <http://qudt.org/schema/qudt/> .
+    @prefix unit: <http://qudt.org/vocab/unit/> .
+    @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+    @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    P:name a s223:PhysicalSpace ;
+      s223:encloses P:hvac-domain .
+    P:hvac-domain a s223:DomainSpace ;
+      s223:cnx P:hvac-domain-in, P:hvac-domain-out ;
+      s223:hasDomain s223:Domain-HVAC .
+    P:hvac-domain-in-connection a s223:Connection. 
+    P:hvac-domain-out-connection a s223:Connection. 
+
+  dependencies:
+    - template: air-outlet-cp
+      args: {"name": "hvac-domain-out", "connection": "hvac-domain-out-connection"}
+    - template: air-inlet-cp
+      args: {"name": "hvac-domain-in", "connection": "hvac-domain-in-connection"}
+
+
+co2-concentration:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+    @prefix qudt: <http://qudt.org/schema/qudt/> .
+    @prefix unit: <http://qudt.org/vocab/unit/> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:QuantifiableObservableProperty ;
+      qudt:hasQuantityKind quantitykind:MoleFraction ;
+      s223:ofSubstance s223:Constituent-CO2 ;
+      s223:ofMedium s223:Fluid-Air ;
+      qudt:hasUnit unit:PPM .
+
+pid-output:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+    @prefix qudt: <http://qudt.org/schema/qudt/> .
+    @prefix unit: <http://qudt.org/vocab/unit/> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:QuantifiableObservableProperty ;
+      qudt:hasQuantityKind quantitykind:Dimensionless ;
+      qudt:hasUnit unit:UNITLESS .
+
+co2-concentration-setpoint:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+    @prefix qudt: <http://qudt.org/schema/qudt/> .
+    @prefix unit: <http://qudt.org/vocab/unit/> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:QuantifiableActuatableProperty ;
+      qudt:hasQuantityKind quantitykind:MoleFraction ;
+      s223:ofSubstance s223:Constituent-CO2 ;
+      s223:ofMedium s223:Fluid-Air ;
+      qudt:hasUnit unit:PPM .
+
+window:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    P:name a s223:Window ;
+      s223:cnx P:in, P:out ;
+      s223:hasProperty P:window-switch-on-off .
+    P:window-switch s223:hasObservationLocation P:name .
+    P:in s223:cnx P:in-connection .
+    P:out s223:cnx P:out-connection .
+
+  dependencies:
+    - template: window-inlet-cp
+      args: {"name": "in","connection": "in-connection"}
+    - template: window-outlet-cp
+      args: {"name": "out","connection": "out-connection"}
+    - template: switch-on-off
+      args: {"name": "window-switch-on-off"}
+    - template: sensor
+      args: {"name": "window-switch", "property": "window-switch-on-off", "where": "name"}
+
+window-inlet-cp:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    P:name a s223:InletConnectionPoint;
+      s223:hasMedium s223:EM-Light ;
+      s223:cnx P:connection .
+  dependencies:
+    - template: light-connection
+      args: {"name": "connection"}
+
+
+
+window-outlet-cp:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    P:name a s223:OutletConnectionPoint;
+      s223:hasMedium s223:EM-Light ;
+      s223:cnx P:connection .
+  dependencies:
+    - template: light-connection
+      args: {"name": "connection"}
+
+
+
+switch-on-off:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:EnumeratedObservableProperty ;
+      s223:hasEnumerationKind s223:Binary-OnOff .
+
+override-signal:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:EnumeratedObservableProperty ;
+      s223:hasEnumerationKind s223:EnumerationKind-Aspect .
+
+
+temp-setpoint-adjustment-value:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+    @prefix qudt: <http://qudt.org/schema/qudt/> .
+    @prefix unit: <http://qudt.org/vocab/unit/> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:QuantifiableObservableProperty ;
+      qudt:hasQuantityKind quantitykind:Temperature;
+      qudt:hasUnit unit:DEG_C .
+
+temp-setpoint:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+    @prefix qudt: <http://qudt.org/schema/qudt/> .
+    @prefix unit: <http://qudt.org/vocab/unit/> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:QuantifiableActuatableProperty ;
+      qudt:hasQuantityKind quantitykind:Temperature;
+      qudt:hasUnit unit:DEG_C .
+
+air-flow-setpoint:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+    @prefix qudt: <http://qudt.org/schema/qudt/> .
+    @prefix unit: <http://qudt.org/vocab/unit/> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:QuantifiableActuatableProperty ;
+        qudt:hasQuantityKind quantitykind:VolumeFlowRate;
+        qudt:hasUnit unit:FT3-PER-MIN .
+
+
+static-pressure-setpoint:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+    @prefix qudt: <http://qudt.org/schema/qudt/> .
+    @prefix unit: <http://qudt.org/vocab/unit/> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:QuantifiableActuatableProperty ;
+      qudt:hasQuantityKind quantitykind:Pressure ;
+      qudt:hasUnit unit:IN_H2O .
+
+
+zone-occupancy:
+  body: >    
+    @prefix P: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:EnumeratedObservableProperty ;
+      s223:hasEnumerationKind s223:EnumerationKind-Occupancy .
+
+light-connection:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    P:name a s223:Connection ;
+      s223:hasMedium s223:EM-Light .
+
+
+# ============= below is AHU related
+
+actuator:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    P:name a s223:Actuator ;
+      s223:actuates P:where ;
+      s223:actuatedByProperty P:property .
+  optional: ["where"]
+
+
+
+valve-command:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+    @prefix qudt: <http://qudt.org/schema/qudt/> .
+    @prefix unit: <http://qudt.org/vocab/unit/> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:QuantifiableActuatableProperty ;
+      qudt:hasQuantityKind quantitykind:DimensionlessRatio ;
+      qudt:hasUnit unit:PERCENT ;
+      s223:hasAspect s223:Binary-Position.
+
+valve-position:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+    @prefix qudt: <http://qudt.org/schema/qudt/> .
+    @prefix unit: <http://qudt.org/vocab/unit/> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:QuantifiableObservableProperty ;
+      qudt:hasQuantityKind quantitykind:DimensionlessRatio ;
+      qudt:hasUnit unit:PERCENT .
+
+
+
+speed-command:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+    @prefix qudt: <http://qudt.org/schema/qudt/> .
+    @prefix unit: <http://qudt.org/vocab/unit/> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:QuantifiableActuatableProperty ;
+        qudt:hasQuantityKind quantitykind:DimensionlessRatio ;
+        qudt:hasUnit unit:PERCENT .
+
+
+speed-status:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+    @prefix qudt: <http://qudt.org/schema/qudt/> .
+    @prefix unit: <http://qudt.org/vocab/unit/> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:QuantifiableObservableProperty ;
+        qudt:hasQuantityKind quantitykind:DimensionlessRatio ;
+        qudt:hasUnit unit:PERCENT .
+
+reset-command:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:EnumeratedActuatableProperty ;
+      s223:hasEnumerationKind s223:EnumerationKind-Binary .
+
+trim-and-respond-requests:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:EnumeratedObservableProperty ;
+      s223:hasEnumerationKind s223:Aspect-OperatingMode .
+
+general-requests:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:EnumeratedObservableProperty ;
+      s223:hasEnumerationKind s223:Aspect-OperatingMode .
+
+start-status:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:EnumeratedObservableProperty ;
+      s223:hasEnumerationKind s223:Binary-OnOff .
+
+
+power-consumption:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+    @prefix qudt: <http://qudt.org/schema/qudt/> .
+    @prefix unit: <http://qudt.org/vocab/unit/> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:QuantifiableObservableProperty ;
+        qudt:hasQuantityKind quantitykind:ElectricPower ;
+        qudt:hasUnit unit:W .
+
+air-flow-measurement-station:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:Equipment, g36:AirFlowStation;
+      s223:cnx P:in, P:out ;
+      s223:hasProperty P:air-flow .
+    P:air-flow-sensor s223:hasObservationLocation P:name ;
+      s223:measuresSubstance s223:Fluid-Air .
+    P:in s223:cnx P:in-connection .
+    P:out s223:cnx P:out-connection .
+
+  dependencies:
+    - template: air-inlet-cp
+      args: {"name": "in","connection": "in-connection"}
+    - template: air-outlet-cp
+      args: {"name": "out","connection": "out-connection"}
+    - template: air-flow
+      args: {"name": "air-flow"}
+    - template: sensor
+      args: {"name": "air-flow-sensor", "property": "air-flow", "where": "name"}
+

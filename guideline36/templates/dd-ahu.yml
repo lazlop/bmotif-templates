@@ -1,0 +1,70 @@
+
+
+dual-fan-dual-duct-heating-air-handling-unit:
+  body: >
+    @prefix P: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix g36: <http://data.ashrae.org/standard223/1.0/extensions/g36#> .
+    P:name a s223:AirHandlingUnit, g36:DualFanDualDuctHeatingAirHandlingUnit;
+      s223:contains P:filter, P:supply-fan, P:heating-coil, P:heating-coil-valve;
+      s223:cnx P:air-in, P:air-out,  P:water-in, P:water-out .
+
+    P:air-in s223:hasProperty P:return-air-temp .
+    P:air-out s223:hasProperty P:supply-air-temp, P:supply-duct-static-pressure.
+    P:return-air-temp s223:hasAspect s223:Role-Return.
+    P:supply-air-temp s223:hasAspect s223:Role-Supply.
+
+
+    P:return-air-temp-sensor a s223:Sensor .
+    P:supply-air-temp-sensor a s223:Sensor .
+
+    P:duct-before-filter a s223:Duct .
+    P:duct-after-filter a s223:Duct .
+    P:duct-after-heating-coil a s223:Duct .
+    P:duct-after-supply-fan a s223:Duct .
+
+    P:pipe-hot-water-supply a s223:Pipe . 
+    P:pipe-hot-water-return-before-valve a s223:Pipe .
+    P:pipe-hot-water-return-after-valve a s223:Pipe .
+
+
+
+    P:filter-in s223:mapsTo P:air-in .
+    P:supply-fan-out s223:mapsTo P:air-out .
+
+
+    P:heating-coil-water-in s223:mapsTo P:water-in .
+    P:heating-coil-valve-out s223:mapsTo P:water-out .
+  dependencies:
+
+    - template: air-outlet-cp
+      args: {"name": "air-out", "connection": "duct-after-supply-fan"}
+    - template: air-inlet-cp
+      args: {"name": "air-in", "connection": "duct-before-filter"}
+    - template: water-outlet-cp
+      args: {"name": "water-out", "connection": "pipe-hot-water-return-after-valve"}
+    - template: water-inlet-cp
+      args: {"name": "water-in", "connection": "pipe-hot-water-supply"}
+
+    - template: sensor
+      args: {"name": "supply-air-temp-sensor", "property": "supply-air-temp", "where": "air-out"}
+    - template: sensor
+      args: {"name": "return-air-temp-sensor", "property": "return-air-temp", "where": "air-in"}
+    - template: air-temperature
+      args: {"name": "supply-air-temp"}
+    - template: air-temperature
+      args: {"name": "return-air-temp"}
+    - template: static-pressure
+      args: {"name": "supply-duct-static-pressure"}
+
+    - template: variable-fan
+      args: {"name": "supply-fan", "in-connection": "duct-after-heating-coil", "out-connection": "duct-after-supply-fan"}
+
+    - template: hot-water-coil
+      args: {"name": "heating-coil", "air-in-connection": "duct-after-filter", "air-out-connection": "duct-after-heating-coil", "water-in-connection": "pipe-hot-water-supply", "water-out-connection": "pipe-hot-water-return-before-valve"}
+
+    - template: hw-valve
+      args: {"name": "heating-coil-valve", "in-connection": "pipe-hot-water-return-before-valve", "out-connection": "pipe-hot-water-return-after-valve"}
+
+    - template: filter
+      args: {"name": "filter", "in-connection": "duct-before-filter", "out-connection": "duct-after-filter"}
