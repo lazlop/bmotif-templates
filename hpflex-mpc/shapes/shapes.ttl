@@ -1,0 +1,1704 @@
+@prefix P: <urn:___param___#> .
+@prefix hpflex: <urn:hpflex#> .
+@prefix hpfs: <urn:hpflex/shapes#> .
+@prefix ns1: <https://brickschema.org/schema/Brick/ref#> .
+@prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix s223: <http://data.ashrae.org/standard223#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+hpfs:active-cooling-stages a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:EnumeratedObservableProperty ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "active-cooling-stages_Count" ;
+            sh:path qudt:hasQuantityKind ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "active-cooling-stages_Count-1" ;
+                    sh:hasValue quantitykind:Count ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "active-cooling-stages_hasAspect" ;
+            sh:maxCount 2 ;
+            sh:minCount 2 ;
+            sh:path s223:hasAspect ],
+        [ a sh:PropertyShape ;
+            rdfs:label "active-cooling-stages_hasUnit" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasUnit ],
+        [ a sh:PropertyShape ;
+            rdfs:label "active-cooling-stages_Role-Cooling" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "active-cooling-stages_Role-Cooling-1" ;
+                    sh:hasValue s223:Role-Cooling ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "active-cooling-stages_hasQuantityKind" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasQuantityKind ],
+        [ a sh:PropertyShape ;
+            rdfs:label "active-cooling-stages_NUM" ;
+            sh:path qudt:hasUnit ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "active-cooling-stages_NUM-1" ;
+                    sh:hasValue unit:NUM ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "active-cooling-stages_Aspect-OperatingStatus" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "active-cooling-stages_Aspect-OperatingStatus-1" ;
+                    sh:hasValue s223:Aspect-OperatingStatus ] ] .
+
+hpfs:active-heating-stages a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:EnumeratedObservableProperty ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "active-heating-stages_NUM" ;
+            sh:path qudt:hasUnit ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "active-heating-stages_NUM-1" ;
+                    sh:hasValue unit:NUM ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "active-heating-stages_hasAspect" ;
+            sh:maxCount 2 ;
+            sh:minCount 2 ;
+            sh:path s223:hasAspect ],
+        [ a sh:PropertyShape ;
+            rdfs:label "active-heating-stages_Role-Heating" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "active-heating-stages_Role-Heating-1" ;
+                    sh:hasValue s223:Role-Heating ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "active-heating-stages_Aspect-OperatingStatus" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "active-heating-stages_Aspect-OperatingStatus-1" ;
+                    sh:hasValue s223:Aspect-OperatingStatus ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "active-heating-stages_hasQuantityKind" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasQuantityKind ],
+        [ a sh:PropertyShape ;
+            rdfs:label "active-heating-stages_hasUnit" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasUnit ],
+        [ a sh:PropertyShape ;
+            rdfs:label "active-heating-stages_Count" ;
+            sh:path qudt:hasQuantityKind ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "active-heating-stages_Count-1" ;
+                    sh:hasValue quantitykind:Count ] ] .
+
+hpfs:air-bidirectional-cp a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:BidirectionalConnectionPoint ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "air-bidirectional-cp_noAspects" ;
+            sh:maxCount 0 ;
+            sh:minCount 0 ;
+            sh:path s223:hasAspect ],
+        [ a sh:PropertyShape ;
+            rdfs:label "air-bidirectional-cp_hasMedium" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path s223:hasMedium ],
+        [ a sh:PropertyShape ;
+            rdfs:label "air-bidirectional-cp_Medium-Air" ;
+            sh:path s223:hasMedium ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "air-bidirectional-cp_Medium-Air-1" ;
+                    sh:hasValue s223:Medium-Air ] ] .
+
+hpfs:air-inlet-cp a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:InletConnectionPoint ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "air-inlet-cp_noAspects" ;
+            sh:maxCount 0 ;
+            sh:minCount 0 ;
+            sh:path s223:hasAspect ],
+        [ a sh:PropertyShape ;
+            rdfs:label "air-inlet-cp_Medium-Air" ;
+            sh:path s223:hasMedium ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "air-inlet-cp_Medium-Air-1" ;
+                    sh:hasValue s223:Medium-Air ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "air-inlet-cp_hasMedium" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path s223:hasMedium ] .
+
+hpfs:air-outlet-cp a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:OutletConnectionPoint ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "air-outlet-cp_noAspects" ;
+            sh:maxCount 0 ;
+            sh:minCount 0 ;
+            sh:path s223:hasAspect ],
+        [ a sh:PropertyShape ;
+            rdfs:label "air-outlet-cp_hasMedium" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path s223:hasMedium ],
+        [ a sh:PropertyShape ;
+            rdfs:label "air-outlet-cp_Medium-Air" ;
+            sh:path s223:hasMedium ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "air-outlet-cp_Medium-Air-1" ;
+                    sh:hasValue s223:Medium-Air ] ] .
+
+hpfs:area a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:QuantifiableObservableProperty ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "area_hasValue" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path s223:hasValue ],
+        [ a sh:PropertyShape ;
+            rdfs:label "area_noAspects" ;
+            sh:maxCount 0 ;
+            sh:minCount 0 ;
+            sh:path s223:hasAspect ],
+        [ a sh:PropertyShape ;
+            rdfs:label "area_hasUnit" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasUnit ],
+        [ a sh:PropertyShape ;
+            rdfs:label "area_Area" ;
+            sh:path qudt:hasQuantityKind ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "area_Area-1" ;
+                    sh:hasValue quantitykind:Area ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "area_hasQuantityKind" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasQuantityKind ] .
+
+hpfs:azimuth a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:QuantifiableObservableProperty ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "azimuth_hasUnit" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasUnit ],
+        [ a sh:PropertyShape ;
+            rdfs:label "azimuth_Azimuth" ;
+            sh:path qudt:hasQuantityKind ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "azimuth_Azimuth-1" ;
+                    sh:hasValue quantitykind:Azimuth ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "azimuth_hasValue" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path s223:hasValue ],
+        [ a sh:PropertyShape ;
+            rdfs:label "azimuth_noAspects" ;
+            sh:maxCount 0 ;
+            sh:minCount 0 ;
+            sh:path s223:hasAspect ],
+        [ a sh:PropertyShape ;
+            rdfs:label "azimuth_hasQuantityKind" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasQuantityKind ] .
+
+hpfs:connection a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:Connection ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "connection_noAspects" ;
+            sh:maxCount 0 ;
+            sh:minCount 0 ;
+            sh:path s223:hasAspect ] .
+
+hpfs:cooling-COP a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:QuantifiableObservableProperty ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "cooling-COP_CoefficientOfPerformance" ;
+            sh:path qudt:hasQuantityKind ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "cooling-COP_CoefficientOfPerformance-1" ;
+                    sh:hasValue quantitykind:CoefficientOfPerformance ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "cooling-COP_hasQuantityKind" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasQuantityKind ],
+        [ a sh:PropertyShape ;
+            rdfs:label "cooling-COP_hasValue" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path s223:hasValue ],
+        [ a sh:PropertyShape ;
+            rdfs:label "cooling-COP_hasAspect" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path s223:hasAspect ],
+        [ a sh:PropertyShape ;
+            rdfs:label "cooling-COP_Role-Cooling" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "cooling-COP_Role-Cooling-1" ;
+                    sh:hasValue s223:Role-Cooling ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "cooling-COP_hasUnit" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasUnit ] .
+
+hpfs:cooling-capacity a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:QuantifiableObservableProperty ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "cooling-capacity_hasValue" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path s223:hasValue ],
+        [ a sh:PropertyShape ;
+            rdfs:label "cooling-capacity_hasUnit" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasUnit ],
+        [ a sh:PropertyShape ;
+            rdfs:label "cooling-capacity_Power" ;
+            sh:path qudt:hasQuantityKind ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "cooling-capacity_Power-1" ;
+                    sh:hasValue quantitykind:Power ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "cooling-capacity_Role-Cooling" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "cooling-capacity_Role-Cooling-1" ;
+                    sh:hasValue s223:Role-Cooling ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "cooling-capacity_hasAspect" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path s223:hasAspect ],
+        [ a sh:PropertyShape ;
+            rdfs:label "cooling-capacity_hasQuantityKind" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasQuantityKind ] .
+
+hpfs:effective-cooling-setpoint a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:QuantifiableObservableProperty ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "effective-cooling-setpoint_hasAspect" ;
+            sh:maxCount 3 ;
+            sh:minCount 3 ;
+            sh:path s223:hasAspect ],
+        [ a sh:PropertyShape ;
+            rdfs:label "effective-cooling-setpoint_Temperature" ;
+            sh:path qudt:hasQuantityKind ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "effective-cooling-setpoint_Temperature-1" ;
+                    sh:hasValue quantitykind:Temperature ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "effective-cooling-setpoint_hasQuantityKind" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasQuantityKind ],
+        [ a sh:PropertyShape ;
+            rdfs:label "effective-cooling-setpoint_hasUnit" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasUnit ],
+        [ a sh:PropertyShape ;
+            rdfs:label "effective-cooling-setpoint_Role-Cooling" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "effective-cooling-setpoint_Role-Cooling-1" ;
+                    sh:hasValue s223:Role-Cooling ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "effective-cooling-setpoint_Effectiveness-Active" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "effective-cooling-setpoint_Effectiveness-Active-1" ;
+                    sh:hasValue s223:Effectiveness-Active ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "effective-cooling-setpoint_Aspect-Setpoint" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "effective-cooling-setpoint_Aspect-Setpoint-1" ;
+                    sh:hasValue s223:Aspect-Setpoint ] ] .
+
+hpfs:effective-heating-setpoint a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:QuantifiableObservableProperty ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "effective-heating-setpoint_hasQuantityKind" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasQuantityKind ],
+        [ a sh:PropertyShape ;
+            rdfs:label "effective-heating-setpoint_Aspect-Setpoint" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "effective-heating-setpoint_Aspect-Setpoint-1" ;
+                    sh:hasValue s223:Aspect-Setpoint ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "effective-heating-setpoint_Effectiveness-Active" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "effective-heating-setpoint_Effectiveness-Active-1" ;
+                    sh:hasValue s223:Effectiveness-Active ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "effective-heating-setpoint_Role-Heating" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "effective-heating-setpoint_Role-Heating-1" ;
+                    sh:hasValue s223:Role-Heating ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "effective-heating-setpoint_hasUnit" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasUnit ],
+        [ a sh:PropertyShape ;
+            rdfs:label "effective-heating-setpoint_hasAspect" ;
+            sh:maxCount 3 ;
+            sh:minCount 3 ;
+            sh:path s223:hasAspect ],
+        [ a sh:PropertyShape ;
+            rdfs:label "effective-heating-setpoint_Temperature" ;
+            sh:path qudt:hasQuantityKind ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "effective-heating-setpoint_Temperature-1" ;
+                    sh:hasValue quantitykind:Temperature ] ] .
+
+hpfs:effective-temperature-setpoint a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:QuantifiableObservableProperty ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "effective-temperature-setpoint_Effectiveness-Active" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "effective-temperature-setpoint_Effectiveness-Active-1" ;
+                    sh:hasValue s223:Effectiveness-Active ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "effective-temperature-setpoint_hasUnit" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasUnit ],
+        [ a sh:PropertyShape ;
+            rdfs:label "effective-temperature-setpoint_hasQuantityKind" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasQuantityKind ],
+        [ a sh:PropertyShape ;
+            rdfs:label "effective-temperature-setpoint_Aspect-Setpoint" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "effective-temperature-setpoint_Aspect-Setpoint-1" ;
+                    sh:hasValue s223:Aspect-Setpoint ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "effective-temperature-setpoint_hasAspect" ;
+            sh:maxCount 2 ;
+            sh:minCount 2 ;
+            sh:path s223:hasAspect ],
+        [ a sh:PropertyShape ;
+            rdfs:label "effective-temperature-setpoint_Temperature" ;
+            sh:path qudt:hasQuantityKind ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "effective-temperature-setpoint_Temperature-1" ;
+                    sh:hasValue quantitykind:Temperature ] ] .
+
+hpfs:heating-COP a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:QuantifiableObservableProperty ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "heating-COP_CoefficientOfPerformance" ;
+            sh:path qudt:hasQuantityKind ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "heating-COP_CoefficientOfPerformance-1" ;
+                    sh:hasValue quantitykind:CoefficientOfPerformance ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "heating-COP_hasUnit" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasUnit ],
+        [ a sh:PropertyShape ;
+            rdfs:label "heating-COP_hasValue" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path s223:hasValue ],
+        [ a sh:PropertyShape ;
+            rdfs:label "heating-COP_hasQuantityKind" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasQuantityKind ],
+        [ a sh:PropertyShape ;
+            rdfs:label "heating-COP_hasAspect" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path s223:hasAspect ],
+        [ a sh:PropertyShape ;
+            rdfs:label "heating-COP_Role-Heating" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "heating-COP_Role-Heating-1" ;
+                    sh:hasValue s223:Role-Heating ] ] .
+
+hpfs:heating-capacity a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:QuantifiableObservableProperty ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "heating-capacity_hasAspect" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path s223:hasAspect ],
+        [ a sh:PropertyShape ;
+            rdfs:label "heating-capacity_Power" ;
+            sh:path qudt:hasQuantityKind ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "heating-capacity_Power-1" ;
+                    sh:hasValue quantitykind:Power ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "heating-capacity_hasValue" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path s223:hasValue ],
+        [ a sh:PropertyShape ;
+            rdfs:label "heating-capacity_hasUnit" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasUnit ],
+        [ a sh:PropertyShape ;
+            rdfs:label "heating-capacity_Role-Heating" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "heating-capacity_Role-Heating-1" ;
+                    sh:hasValue s223:Role-Heating ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "heating-capacity_hasQuantityKind" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasQuantityKind ] .
+
+hpfs:hp-rtu a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:AirToAirHeatPump ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "hp-rtu_hasProperty" ;
+            sh:maxCount 4 ;
+            sh:minCount 4 ;
+            sh:path s223:hasProperty ],
+        [ a sh:PropertyShape ;
+            rdfs:label "hp-rtu_noAspects" ;
+            sh:maxCount 0 ;
+            sh:minCount 0 ;
+            sh:path s223:hasAspect ] .
+
+hpfs:hvac-zone a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:DomainSpace,
+        s223:PhysicalSpace ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "hvac-zone_noAspects" ;
+            sh:maxCount 0 ;
+            sh:minCount 0 ;
+            sh:path s223:hasAspect ],
+        [ a sh:PropertyShape ;
+            rdfs:label "hvac-zone_encloses" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path s223:encloses ],
+        [ a sh:PropertyShape ;
+            rdfs:label "hvac-zone_hasDomain" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path s223:hasDomain ],
+        [ a sh:PropertyShape ;
+            rdfs:label "hvac-zone_Domain-HVAC" ;
+            sh:path s223:hasDomain ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "hvac-zone_Domain-HVAC-1" ;
+                    sh:hasValue s223:Domain-HVAC ] ] .
+
+hpfs:latitude a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:QuantifiableProperty,
+        hpflex:Latitude ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "latitude_hasValue" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path s223:hasValue ],
+        [ a sh:PropertyShape ;
+            rdfs:label "latitude_hasQuantityKind" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasQuantityKind ],
+        [ a sh:PropertyShape ;
+            rdfs:label "latitude_noAspects" ;
+            sh:maxCount 0 ;
+            sh:minCount 0 ;
+            sh:path s223:hasAspect ],
+        [ a sh:PropertyShape ;
+            rdfs:label "latitude_Degree" ;
+            sh:path qudt:hasUnit ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "latitude_Degree-1" ;
+                    sh:hasValue unit:Degree ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "latitude_GeneralizedCoordinate" ;
+            sh:path qudt:hasQuantityKind ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "latitude_GeneralizedCoordinate-1" ;
+                    sh:hasValue quantitykind:GeneralizedCoordinate ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "latitude_hasUnit" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasUnit ] .
+
+hpfs:longitude a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:QuantifiableProperty,
+        hpflex:Longitude ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "longitude_noAspects" ;
+            sh:maxCount 0 ;
+            sh:minCount 0 ;
+            sh:path s223:hasAspect ],
+        [ a sh:PropertyShape ;
+            rdfs:label "longitude_hasValue" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path s223:hasValue ],
+        [ a sh:PropertyShape ;
+            rdfs:label "longitude_hasQuantityKind" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasQuantityKind ],
+        [ a sh:PropertyShape ;
+            rdfs:label "longitude_Degree" ;
+            sh:path qudt:hasUnit ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "longitude_Degree-1" ;
+                    sh:hasValue unit:Degree ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "longitude_GeneralizedCoordinate" ;
+            sh:path qudt:hasQuantityKind ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "longitude_GeneralizedCoordinate-1" ;
+                    sh:hasValue quantitykind:GeneralizedCoordinate ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "longitude_hasUnit" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasUnit ] .
+
+hpfs:noaastation a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:EnumeratedProperty,
+        hpflex:NOAAStation ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "noaastation_hasValue" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path s223:hasValue ],
+        [ a sh:PropertyShape ;
+            rdfs:label "noaastation_noAspects" ;
+            sh:maxCount 0 ;
+            sh:minCount 0 ;
+            sh:path s223:hasAspect ] .
+
+hpfs:occ-cooling-setpoint a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:QuantifiableObservableProperty ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "occ-cooling-setpoint_Occupancy-Occupied" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "occ-cooling-setpoint_Occupancy-Occupied-1" ;
+                    sh:hasValue s223:Occupancy-Occupied ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "occ-cooling-setpoint_hasAspect" ;
+            sh:maxCount 3 ;
+            sh:minCount 3 ;
+            sh:path s223:hasAspect ],
+        [ a sh:PropertyShape ;
+            rdfs:label "occ-cooling-setpoint_hasUnit" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasUnit ],
+        [ a sh:PropertyShape ;
+            rdfs:label "occ-cooling-setpoint_Role-Cooling" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "occ-cooling-setpoint_Role-Cooling-1" ;
+                    sh:hasValue s223:Role-Cooling ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "occ-cooling-setpoint_Aspect-Setpoint" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "occ-cooling-setpoint_Aspect-Setpoint-1" ;
+                    sh:hasValue s223:Aspect-Setpoint ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "occ-cooling-setpoint_Temperature" ;
+            sh:path qudt:hasQuantityKind ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "occ-cooling-setpoint_Temperature-1" ;
+                    sh:hasValue quantitykind:Temperature ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "occ-cooling-setpoint_hasQuantityKind" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasQuantityKind ] .
+
+hpfs:occ-heating-setpoint a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:QuantifiableObservableProperty ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "occ-heating-setpoint_Role-Heating" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "occ-heating-setpoint_Role-Heating-1" ;
+                    sh:hasValue s223:Role-Heating ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "occ-heating-setpoint_Aspect-Setpoint" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "occ-heating-setpoint_Aspect-Setpoint-1" ;
+                    sh:hasValue s223:Aspect-Setpoint ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "occ-heating-setpoint_Temperature" ;
+            sh:path qudt:hasQuantityKind ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "occ-heating-setpoint_Temperature-1" ;
+                    sh:hasValue quantitykind:Temperature ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "occ-heating-setpoint_hasUnit" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasUnit ],
+        [ a sh:PropertyShape ;
+            rdfs:label "occ-heating-setpoint_Occupancy-Occupied" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "occ-heating-setpoint_Occupancy-Occupied-1" ;
+                    sh:hasValue s223:Occupancy-Occupied ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "occ-heating-setpoint_hasQuantityKind" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasQuantityKind ],
+        [ a sh:PropertyShape ;
+            rdfs:label "occ-heating-setpoint_hasAspect" ;
+            sh:maxCount 3 ;
+            sh:minCount 3 ;
+            sh:path s223:hasAspect ] .
+
+hpfs:point a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:Property,
+        P:point_type ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "point_hasUnit" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasUnit ],
+        [ a sh:PropertyShape ;
+            rdfs:label "point_noAspects" ;
+            sh:maxCount 0 ;
+            sh:minCount 0 ;
+            sh:path s223:hasAspect ] .
+
+hpfs:site a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:PhysicalSpace,
+        hpflex:Site ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "site_noAspects" ;
+            sh:maxCount 0 ;
+            sh:minCount 0 ;
+            sh:path s223:hasAspect ],
+        [ a sh:PropertyShape ;
+            rdfs:label "site_hasProperty" ;
+            sh:maxCount 4 ;
+            sh:minCount 4 ;
+            sh:path s223:hasProperty ] .
+
+hpfs:space a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:PhysicalSpace ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "space_hasProperty" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path s223:hasProperty ],
+        [ a sh:PropertyShape ;
+            rdfs:label "space_noAspects" ;
+            sh:maxCount 0 ;
+            sh:minCount 0 ;
+            sh:path s223:hasAspect ] .
+
+hpfs:temperature a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:QuantifiableObservableProperty ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "temperature_hasQuantityKind" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasQuantityKind ],
+        [ a sh:PropertyShape ;
+            rdfs:label "temperature_noAspects" ;
+            sh:maxCount 0 ;
+            sh:minCount 0 ;
+            sh:path s223:hasAspect ],
+        [ a sh:PropertyShape ;
+            rdfs:label "temperature_Temperature" ;
+            sh:path qudt:hasQuantityKind ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "temperature_Temperature-1" ;
+                    sh:hasValue quantitykind:Temperature ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "temperature_hasUnit" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasUnit ] .
+
+hpfs:tilt a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:QuantifiableObservableProperty ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "tilt_Tilt" ;
+            sh:path qudt:hasQuantityKind ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "tilt_Tilt-1" ;
+                    sh:hasValue quantitykind:Tilt ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tilt_hasValue" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path s223:hasValue ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tilt_hasUnit" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasUnit ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tilt_noAspects" ;
+            sh:maxCount 0 ;
+            sh:minCount 0 ;
+            sh:path s223:hasAspect ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tilt_hasQuantityKind" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasQuantityKind ] .
+
+hpfs:timezone a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:EnumeratedProperty,
+        hpflex:Timezone ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "timezone_hasValue" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path s223:hasValue ],
+        [ a sh:PropertyShape ;
+            rdfs:label "timezone_noAspects" ;
+            sh:maxCount 0 ;
+            sh:minCount 0 ;
+            sh:path s223:hasAspect ] .
+
+hpfs:tstat a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:Thermostat ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "tstat_hasProperty" ;
+            sh:maxCount 5 ;
+            sh:minCount 5 ;
+            sh:path s223:hasProperty ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat_noAspects" ;
+            sh:maxCount 0 ;
+            sh:minCount 0 ;
+            sh:path s223:hasAspect ] .
+
+hpfs:tstat-active a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:EnumeratedObservableProperty ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "tstat-active_Effectiveness-Active" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "tstat-active_Effectiveness-Active-1" ;
+                    sh:hasValue s223:Effectiveness-Active ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-active_Aspect-Cooling" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "tstat-active_Aspect-Cooling-1" ;
+                    sh:hasValue s223:Aspect-Cooling ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-active_Binary-Logical" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "tstat-active_Binary-Logical-1" ;
+                    sh:hasValue s223:Binary-Logical ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-active_hasValue" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path s223:hasValue ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-active_hasUnit" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasUnit ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-active_Aspect-Heating" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "tstat-active_Aspect-Heating-1" ;
+                    sh:hasValue s223:Aspect-Heating ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-active_hasAspect" ;
+            sh:maxCount 4 ;
+            sh:minCount 4 ;
+            sh:path s223:hasAspect ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-active_NUM" ;
+            sh:path qudt:hasUnit ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "tstat-active_NUM-1" ;
+                    sh:hasValue unit:NUM ] ] .
+
+hpfs:tstat-deadband a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:QuantifiableObservableProperty ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "tstat-deadband_true" ;
+            sh:path qudt:isDeltaQuantity ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "tstat-deadband_true-1" ;
+                    sh:hasValue true ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-deadband_hasAspect" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path s223:hasAspect ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-deadband_Temperature" ;
+            sh:path qudt:hasQuantityKind ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "tstat-deadband_Temperature-1" ;
+                    sh:hasValue quantitykind:Temperature ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-deadband_hasQuantityKind" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasQuantityKind ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-deadband_hasValue" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path s223:hasValue ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-deadband_hasUnit" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasUnit ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-deadband_Aspect-Deadband" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "tstat-deadband_Aspect-Deadband-1" ;
+                    sh:hasValue s223:Aspect-Deadband ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-deadband_isDeltaQuantity" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:isDeltaQuantity ] .
+
+hpfs:tstat-heating-cooling-occupancy a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:Thermostat ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "tstat-heating-cooling-occupancy_noAspects" ;
+            sh:maxCount 0 ;
+            sh:minCount 0 ;
+            sh:path s223:hasAspect ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-heating-cooling-occupancy_hasProperty" ;
+            sh:maxCount 7 ;
+            sh:minCount 7 ;
+            sh:path s223:hasProperty ] .
+
+hpfs:tstat-resolution a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:QuantifiableObservableProperty ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "tstat-resolution_hasValue" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path s223:hasValue ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-resolution_isDeltaQuantity" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:isDeltaQuantity ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-resolution_noAspects" ;
+            sh:maxCount 0 ;
+            sh:minCount 0 ;
+            sh:path s223:hasAspect ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-resolution_hasUnit" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasUnit ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-resolution_true" ;
+            sh:path qudt:isDeltaQuantity ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "tstat-resolution_true-1" ;
+                    sh:hasValue true ] ] .
+
+hpfs:tstat-stage_count a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:EnumeratedObservableProperty ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "tstat-stage_count_Count" ;
+            sh:path qudt:hasQuantityKind ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "tstat-stage_count_Count-1" ;
+                    sh:hasValue quantitykind:Count ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-stage_count_hasUnit" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasUnit ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-stage_count_Role-Cooling" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "tstat-stage_count_Role-Cooling-1" ;
+                    sh:hasValue s223:Role-Cooling ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-stage_count_hasQuantityKind" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasQuantityKind ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-stage_count_hasAspect" ;
+            sh:maxCount 2 ;
+            sh:minCount 2 ;
+            sh:path s223:hasAspect ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-stage_count_Aspect-OperatingMode" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "tstat-stage_count_Aspect-OperatingMode-1" ;
+                    sh:hasValue s223:Aspect-OperatingMode ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-stage_count_hasValue" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path s223:hasValue ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-stage_count_NUM" ;
+            sh:path qudt:hasUnit ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "tstat-stage_count_NUM-1" ;
+                    sh:hasValue unit:NUM ] ] .
+
+hpfs:tstat-tolerance a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:QuantifiableObservableProperty ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "tstat-tolerance_true" ;
+            sh:path qudt:isDeltaQuantity ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "tstat-tolerance_true-1" ;
+                    sh:hasValue true ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-tolerance_Aspect-Cooling" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "tstat-tolerance_Aspect-Cooling-1" ;
+                    sh:hasValue s223:Aspect-Cooling ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-tolerance_isDeltaQuantity" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:isDeltaQuantity ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-tolerance_Aspect-Threshold" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "tstat-tolerance_Aspect-Threshold-1" ;
+                    sh:hasValue s223:Aspect-Threshold ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-tolerance_hasValue" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path s223:hasValue ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-tolerance_Temperature" ;
+            sh:path qudt:hasQuantityKind ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "tstat-tolerance_Temperature-1" ;
+                    sh:hasValue quantitykind:Temperature ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-tolerance_Aspect-Heating" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "tstat-tolerance_Aspect-Heating-1" ;
+                    sh:hasValue s223:Aspect-Heating ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-tolerance_hasQuantityKind" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasQuantityKind ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-tolerance_hasAspect" ;
+            sh:maxCount 3 ;
+            sh:minCount 3 ;
+            sh:path s223:hasAspect ],
+        [ a sh:PropertyShape ;
+            rdfs:label "tstat-tolerance_hasUnit" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasUnit ] .
+
+hpfs:unocc-cooling-setpoint a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:QuantifiableObservableProperty ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "unocc-cooling-setpoint_hasQuantityKind" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasQuantityKind ],
+        [ a sh:PropertyShape ;
+            rdfs:label "unocc-cooling-setpoint_Role-Cooling" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "unocc-cooling-setpoint_Role-Cooling-1" ;
+                    sh:hasValue s223:Role-Cooling ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "unocc-cooling-setpoint_hasAspect" ;
+            sh:maxCount 3 ;
+            sh:minCount 3 ;
+            sh:path s223:hasAspect ],
+        [ a sh:PropertyShape ;
+            rdfs:label "unocc-cooling-setpoint_hasUnit" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasUnit ],
+        [ a sh:PropertyShape ;
+            rdfs:label "unocc-cooling-setpoint_Temperature" ;
+            sh:path qudt:hasQuantityKind ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "unocc-cooling-setpoint_Temperature-1" ;
+                    sh:hasValue quantitykind:Temperature ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "unocc-cooling-setpoint_Occupancy-Unoccupied" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "unocc-cooling-setpoint_Occupancy-Unoccupied-1" ;
+                    sh:hasValue s223:Occupancy-Unoccupied ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "unocc-cooling-setpoint_Aspect-Setpoint" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "unocc-cooling-setpoint_Aspect-Setpoint-1" ;
+                    sh:hasValue s223:Aspect-Setpoint ] ] .
+
+hpfs:unocc-heating-setpoint a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:QuantifiableObservableProperty ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "unocc-heating-setpoint_hasAspect" ;
+            sh:maxCount 3 ;
+            sh:minCount 3 ;
+            sh:path s223:hasAspect ],
+        [ a sh:PropertyShape ;
+            rdfs:label "unocc-heating-setpoint_hasQuantityKind" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasQuantityKind ],
+        [ a sh:PropertyShape ;
+            rdfs:label "unocc-heating-setpoint_hasUnit" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path qudt:hasUnit ],
+        [ a sh:PropertyShape ;
+            rdfs:label "unocc-heating-setpoint_Role-Heating" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "unocc-heating-setpoint_Role-Heating-1" ;
+                    sh:hasValue s223:Role-Heating ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "unocc-heating-setpoint_Occupancy-Unoccupied" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "unocc-heating-setpoint_Occupancy-Unoccupied-1" ;
+                    sh:hasValue s223:Occupancy-Unoccupied ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "unocc-heating-setpoint_Aspect-Setpoint" ;
+            sh:path s223:hasAspect ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "unocc-heating-setpoint_Aspect-Setpoint-1" ;
+                    sh:hasValue s223:Aspect-Setpoint ] ],
+        [ a sh:PropertyShape ;
+            rdfs:label "unocc-heating-setpoint_Temperature" ;
+            sh:path qudt:hasQuantityKind ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "unocc-heating-setpoint_Temperature-1" ;
+                    sh:hasValue quantitykind:Temperature ] ] .
+
+hpfs:volttron-external-reference a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:ExternalReference ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "volttron-external-reference_noAspects" ;
+            sh:maxCount 0 ;
+            sh:minCount 0 ;
+            sh:path s223:hasAspect ],
+        [ a sh:PropertyShape ;
+            rdfs:label "volttron-external-reference_hasTopicName" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path ns1:hasTopicName ] .
+
+hpfs:window a s223:Class,
+        rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:Window ;
+    sh:property [ a sh:PropertyShape ;
+            rdfs:label "window_noAspects" ;
+            sh:maxCount 0 ;
+            sh:minCount 0 ;
+            sh:path s223:hasAspect ],
+        [ a sh:PropertyShape ;
+            rdfs:label "window_hasProperty" ;
+            sh:maxCount 3 ;
+            sh:minCount 3 ;
+            sh:path s223:hasProperty ] .
+
+hpfs:active-cooling-stagesAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:active-cooling-stages ;
+            sh:object hpfs:active-cooling-stages ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:EnumeratedObservableProperty .
+
+hpfs:active-heating-stagesAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:active-heating-stages ;
+            sh:object hpfs:active-heating-stages ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:EnumeratedObservableProperty .
+
+hpfs:air-bidirectional-cpAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:air-bidirectional-cp ;
+            sh:object hpfs:air-bidirectional-cp ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:BidirectionalConnectionPoint .
+
+hpfs:air-connected-toAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:SPARQLRule ;
+            sh:construct """
+                CONSTRUCT {
+                    ?name <urn:hpflex/shapes#air-connected-to> ?target .
+                }
+                WHERE {
+	?name <http://data.ashrae.org/standard223#connectedTo> ?target . 
+}""" ] ;
+    sh:targetSubjectsOf s223:connectedTo .
+
+hpfs:air-inlet-cpAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:air-inlet-cp ;
+            sh:object hpfs:air-inlet-cp ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:InletConnectionPoint .
+
+hpfs:air-outlet-cpAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:air-outlet-cp ;
+            sh:object hpfs:air-outlet-cp ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:OutletConnectionPoint .
+
+hpfs:areaAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:area ;
+            sh:object hpfs:area ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:QuantifiableObservableProperty .
+
+hpfs:azimuthAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:azimuth ;
+            sh:object hpfs:azimuth ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:QuantifiableObservableProperty .
+
+hpfs:connectionAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:connection ;
+            sh:object hpfs:connection ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:Connection .
+
+hpfs:cooling-COPAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:cooling-COP ;
+            sh:object hpfs:cooling-COP ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:QuantifiableObservableProperty .
+
+hpfs:cooling-capacityAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:cooling-capacity ;
+            sh:object hpfs:cooling-capacity ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:QuantifiableObservableProperty .
+
+hpfs:effective-cooling-setpointAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:effective-cooling-setpoint ;
+            sh:object hpfs:effective-cooling-setpoint ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:QuantifiableObservableProperty .
+
+hpfs:effective-heating-setpointAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:effective-heating-setpoint ;
+            sh:object hpfs:effective-heating-setpoint ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:QuantifiableObservableProperty .
+
+hpfs:effective-temperature-setpointAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:effective-temperature-setpoint ;
+            sh:object hpfs:effective-temperature-setpoint ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:QuantifiableObservableProperty .
+
+hpfs:has-locationAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:SPARQLRule ;
+            sh:construct """
+                CONSTRUCT {
+                    ?name <urn:hpflex/shapes#has-location> ?target .
+                }
+                WHERE {
+	?name <http://data.ashrae.org/standard223#hasMeasurementLocation> ?target . 
+}""" ] ;
+    sh:targetSubjectsOf s223:hasMeasurementLocation .
+
+hpfs:has-pointAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:SPARQLRule ;
+            sh:construct """
+                CONSTRUCT {
+                    ?name <urn:hpflex/shapes#has-point> ?target .
+                }
+                WHERE {
+	?name <http://data.ashrae.org/standard223#hasProperty> ?target . 
+}""" ] ;
+    sh:targetSubjectsOf s223:hasProperty .
+
+hpfs:has-referenceAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:SPARQLRule ;
+            sh:construct """
+                CONSTRUCT {
+                    ?name <urn:hpflex/shapes#has-reference> ?target .
+                }
+                WHERE {
+	?name <http://data.ashrae.org/standard223#hasExternalReference> ?target . 
+}""" ] ;
+    sh:targetSubjectsOf s223:hasExternalReference .
+
+hpfs:has-spaceAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:SPARQLRule ;
+            sh:construct """
+                CONSTRUCT {
+                    ?name <urn:hpflex/shapes#has-space> ?target .
+                }
+                WHERE {
+	?target <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://data.ashrae.org/standard223#PhysicalSpace> . 
+	?name <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://data.ashrae.org/standard223#DomainSpace> . 
+	?name <http://data.ashrae.org/standard223#contains> ?target . 
+}""" ] ;
+    sh:targetSubjectsOf rdf:type .
+
+hpfs:has-valueAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:SPARQLRule ;
+            sh:construct """
+                CONSTRUCT {
+                    ?name <urn:hpflex/shapes#has-value> ?target .
+                }
+                WHERE {
+	?name <http://data.ashrae.org/standard223#hasValue> ?target . 
+}""" ] ;
+    sh:targetSubjectsOf s223:hasValue .
+
+hpfs:has-windowAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:SPARQLRule ;
+            sh:construct """
+                CONSTRUCT {
+                    ?name <urn:hpflex/shapes#has-window> ?target .
+                }
+                WHERE {
+	?target <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://data.ashrae.org/standard223#Window> . 
+	?name <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://data.ashrae.org/standard223#DomainSpace> . 
+	?name <http://data.ashrae.org/standard223#connectedTo> ?target . 
+}""" ] ;
+    sh:targetSubjectsOf rdf:type .
+
+hpfs:heating-COPAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:heating-COP ;
+            sh:object hpfs:heating-COP ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:QuantifiableObservableProperty .
+
+hpfs:heating-capacityAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:heating-capacity ;
+            sh:object hpfs:heating-capacity ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:QuantifiableObservableProperty .
+
+hpfs:hp-rtuAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:hp-rtu ;
+            sh:object hpfs:hp-rtu ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:AirToAirHeatPump .
+
+hpfs:hvac-zoneAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:hvac-zone ;
+            sh:object hpfs:hvac-zone ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:PhysicalSpace .
+
+hpfs:latitudeAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:latitude ;
+            sh:object hpfs:latitude ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:QuantifiableProperty .
+
+hpfs:longitudeAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:longitude ;
+            sh:object hpfs:longitude ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:QuantifiableProperty .
+
+hpfs:noaastationAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:noaastation ;
+            sh:object hpfs:noaastation ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:EnumeratedProperty .
+
+hpfs:occ-cooling-setpointAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:occ-cooling-setpoint ;
+            sh:object hpfs:occ-cooling-setpoint ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:QuantifiableObservableProperty .
+
+hpfs:occ-heating-setpointAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:occ-heating-setpoint ;
+            sh:object hpfs:occ-heating-setpoint ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:QuantifiableObservableProperty .
+
+hpfs:pointAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:point ;
+            sh:object hpfs:point ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:Property .
+
+hpfs:siteAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:site ;
+            sh:object hpfs:site ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:PhysicalSpace .
+
+hpfs:spaceAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:space ;
+            sh:object hpfs:space ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:PhysicalSpace .
+
+hpfs:temperatureAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:temperature ;
+            sh:object hpfs:temperature ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:QuantifiableObservableProperty .
+
+hpfs:tiltAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:tilt ;
+            sh:object hpfs:tilt ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:QuantifiableObservableProperty .
+
+hpfs:timezoneAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:timezone ;
+            sh:object hpfs:timezone ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:EnumeratedProperty .
+
+hpfs:tstat-activeAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:tstat-active ;
+            sh:object hpfs:tstat-active ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:EnumeratedObservableProperty .
+
+hpfs:tstat-deadbandAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:tstat-deadband ;
+            sh:object hpfs:tstat-deadband ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:QuantifiableObservableProperty .
+
+hpfs:tstat-heating-cooling-occupancyAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:tstat-heating-cooling-occupancy ;
+            sh:object hpfs:tstat-heating-cooling-occupancy ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:Thermostat .
+
+hpfs:tstat-resolutionAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:tstat-resolution ;
+            sh:object hpfs:tstat-resolution ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:QuantifiableObservableProperty .
+
+hpfs:tstat-stage_countAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:tstat-stage_count ;
+            sh:object hpfs:tstat-stage_count ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:EnumeratedObservableProperty .
+
+hpfs:tstat-toleranceAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:tstat-tolerance ;
+            sh:object hpfs:tstat-tolerance ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:QuantifiableObservableProperty .
+
+hpfs:tstatAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:tstat ;
+            sh:object hpfs:tstat ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:Thermostat .
+
+hpfs:unocc-cooling-setpointAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:unocc-cooling-setpoint ;
+            sh:object hpfs:unocc-cooling-setpoint ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:QuantifiableObservableProperty .
+
+hpfs:unocc-heating-setpointAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:unocc-heating-setpoint ;
+            sh:object hpfs:unocc-heating-setpoint ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:QuantifiableObservableProperty .
+
+hpfs:volttron-external-referenceAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:volttron-external-reference ;
+            sh:object hpfs:volttron-external-reference ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:ExternalReference .
+
+hpfs:windowAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:window ;
+            sh:object hpfs:window ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass s223:Window .
+

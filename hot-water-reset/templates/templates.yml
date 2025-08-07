@@ -6,7 +6,7 @@
 
 # TODO: qudt:hasQuantityKind needs to be inferred from qudt ontology.
 
-sensor-sdh:
+sensor-hwr:
   body: >
     @prefix P: <urn:___param___#> .
     @prefix s223: <http://data.ashrae.org/standard223#> .
@@ -16,7 +16,7 @@ sensor-sdh:
   optional: ["where"]
 
 
-actuator-sdh:
+actuator-hwr:
   body: >
     @prefix P: <urn:___param___#> .
     @prefix s223: <http://data.ashrae.org/standard223#> .
@@ -26,7 +26,7 @@ actuator-sdh:
   optional: ["equipment"]
 
 
-general-property-sdh:
+general-property-hwr:
   body: >
     @prefix P: <urn:___param___#> .
     @prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
@@ -61,7 +61,7 @@ general-property-sdh:
 
 
 
-vav-noreheat-sdh:
+vav-noreheat-hwr:
   body: >
     @prefix P: <urn:___param___#> .
     @prefix s223: <http://data.ashrae.org/standard223#> .
@@ -125,7 +125,7 @@ vav-noreheat-sdh:
       args: {"name": "discharge-air-temp-setpoint"}
 
 
-general-setpoint-limits-sdh:
+general-setpoint-limits-hwr:
   body: >
     @prefix P: <urn:___param___#> .
     @prefix s223: <http://data.ashrae.org/standard223#> .
@@ -136,7 +136,7 @@ general-setpoint-limits-sdh:
 
 
 
-air-temperature-setpoint-sdh:
+air-temperature-setpoint-hwr:
   body: >
     @prefix P: <urn:___param___#> .
     @prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
@@ -147,7 +147,7 @@ air-temperature-setpoint-sdh:
         qudt:hasQuantityKind quantitykind:Temperature;
         qudt:hasUnit P:unit .
 
-air-temperature-sdh:
+air-temperature-hwr:
   body: >
     @prefix P: <urn:___param___#> .
     @prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
@@ -172,7 +172,7 @@ cooling-command:
         qudt:unit unit:PERCENT .
 
 
-discharge-air-flow-sdh:
+discharge-air-flow-hwr:
   body: >
     @prefix P: <urn:___param___#> .
     @prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
@@ -184,7 +184,7 @@ discharge-air-flow-sdh:
         qudt:unit unit:PERCENT .
 
 # why is "P:oa-in s223:cnx P:oa-in-connection ." here if already define in the "air-inlet-cp" template?
-ahu-100pct-air-sdh:
+ahu-100pct-air-hwr:
   body: >
     @prefix P: <urn:___param___#> .
     @prefix s223: <http://data.ashrae.org/standard223#> .
@@ -237,27 +237,27 @@ ahu-100pct-air-sdh:
       args: {"name": "oa-in", "connection": "oa-in-connection"}
     - template: air-outlet-cp
       args: {"name": "sa-out", "connection": "sa-out-connection"}
-    - template: damper-sdh
+    - template: damper-hwr
       args: {"name": "oa-damper", "in-connection": "oa-damper-in-duct", "in-mapsto": "oa-in", "out-connection": "oa-damper-out-duct"}
-    - template: filter-sdh
+    - template: filter-hwr
       args: {"name": "pre-filter", "in-connection": "oa-damper-out-duct", "out-connection": "pre-filter-out-duct",
              "differential-pressure-sensor": "pre-filter-differential-pressure-sensor", "differential-pressure": "pre-filter-differential-pressure"}
-    - template: hot-water-coil-sdh
+    - template: hot-water-coil-hwr
       args: {"name": htg-coil, "air-in-connection": "pre-filter-out-duct", "air-out-connection": "htg-coil-air-out-duct",
              "water-in-connection": "htg-coil-water-in-pipe", "water-out-connection": "htg-coil-water-out-pipe"}
-    - template: chilled-water-coil-sdh
+    - template: chilled-water-coil-hwr
       args: {"name": clg-coil, "air-in-connection": "htg-coil-air-out-duct", "air-out-connection": "clg-coil-air-out-duct",
              "water-in-connection": "clg-coil-water-in-pipe", "water-out-connection": "clg-coil-water-out-pipe"}
-    - template: variable-fan-sdh
+    - template: variable-fan-hwr
       args: {"name": "sa-fan", "in-connection": "clg-coil-air-out-duct", "out-connection": "sa-fan-out-duct"}
-    - template: filter-sdh
+    - template: filter-hwr
       args: {"name": "final-filter", "in-connection": "sa-fan-out-duct", "out-connection": "final-filter-out-duct",
              "differential-pressure-sensor": "final-filter-differential-pressure-sensor", "differential-pressure": "final-filter-differential-pressure"}
-    - template: damper-sdh
+    - template: damper-hwr
       args: {"name": "sa-iso-damper", "in-connection": "final-filter-out-duct", "out-connection": "sa-iso-damper-out-duct", "out-mapsto": "sa-out"}
 
 
-ahu-economizer-air-clg-only-sdh:
+ahu-economizer-air-clg-only-hwr:
   body: >
     @prefix P: <urn:___param___#> .
     @prefix s223: <http://data.ashrae.org/standard223#> .
@@ -363,31 +363,31 @@ ahu-economizer-air-clg-only-sdh:
       args: {"name": "oa-in", "connection": "oa-in-connection"}
     - template: air-outlet-cp
       args: {"name": "sa-out", "connection": "sa-out-connection"}
-    - template: damper-sdh
+    - template: damper-hwr
       args: {"name": "ra-iso-damper", "in-connection": "ra-iso-damper-in-duct", "in-mapsto": "ra-in", "out-connection": "ra-iso-damper-out-duct"}
-    - template: variable-fan-sdh
+    - template: variable-fan-hwr
       args: {"name": "ra-fan", "in-connection": "ra-iso-damper-out-duct", "out-connection": "ra-fan-out-duct"}
-    - template: damper-sdh
+    - template: damper-hwr
       args: {"name": "ra-damper", "in-connection": "ra-damper-in-duct", "out-connection": "ra-damper-out-duct"}
-    - template: damper-sdh
+    - template: damper-hwr
       args: {"name": "ea-damper", "in-connection": "ea-damper-in-duct", "out-connection": "ea-damper-out-duct"}
-    - template: damper-sdh
+    - template: damper-hwr
       args: {"name": "oa-damper", "in-connection": "oa-damper-in-duct", "in-mapsto": "oa-in", "out-connection": "oa-damper-out-duct"}
-    - template: damper-sdh
+    - template: damper-hwr
       args: {"name": "econo-damper", "in-connection": "econo-damper-in-duct", "out-connection": "econo-damper-out-duct"}
-    - template: filter-sdh
+    - template: filter-hwr
       args: {"name": "pre-filter", "in-connection": "pre-filter-in-duct", "out-connection": "pre-filter-out-duct",
              "differential-pressure-sensor": "pre-filter-differential-pressure-sensor", "differential-pressure": "pre-filter-differential-pressure"}
-    - template: chilled-water-coil-sdh
+    - template: chilled-water-coil-hwr
       args: {"name": clg-coil, "air-in-connection": "pre-filter-out-duct", "air-out-connection": "clg-coil-air-out-duct",
              "water-in-connection": "clg-coil-water-in-pipe", "water-out-connection": "clg-coil-water-out-pipe"}
-    - template: variable-fan-sdh
+    - template: variable-fan-hwr
       args: {"name": "sa-fan", "in-connection": "clg-coil-air-out-duct", "out-connection": "sa-fan-out-duct"}
-    - template: damper-sdh
+    - template: damper-hwr
       args: {"name": "sa-iso-damper", "in-connection": "sa-fan-out-duct", "out-connection": "sa-iso-damper-out-duct", "out-mapsto": "sa-out"}
 
 
-ahu-simple-clg-sdh:
+ahu-simple-clg-hwr:
   body: >
     @prefix P: <urn:___param___#> .
     @prefix s223: <http://data.ashrae.org/standard223#> .
@@ -425,17 +425,17 @@ ahu-simple-clg-sdh:
       args: {"name": "sa-in", "connection": "sa-in-connection"}
     - template: air-outlet-cp
       args: {"name": "sa-out", "connection": "sa-out-connection"}
-    - template: filter-sdh
+    - template: filter-hwr
       args: {"name": "pre-filter", "in-connection": "pre-filter-in-duct", "out-connection": "pre-filter-out-duct",
              "differential-pressure-sensor": "pre-filter-differential-pressure-sensor", "differential-pressure": "pre-filter-differential-pressure"}
-    - template: chilled-water-coil-sdh
+    - template: chilled-water-coil-hwr
       args: {"name": clg-coil, "air-in-connection": "pre-filter-out-duct", "air-out-connection": "clg-coil-air-out-duct",
              "water-in-connection": "clg-coil-water-in-pipe", "water-out-connection": "clg-coil-water-out-pipe"}
-    - template: variable-fan-sdh
+    - template: variable-fan-hwr
       args: {"name": "sa-fan", "in-connection": "clg-coil-air-out-duct", "out-connection": "sa-fan-out-duct", "out-mapsto": "sa-out"}
 
 
-ahu-simple-clg-iso-sdh:
+ahu-simple-clg-iso-hwr:
   body: >
     @prefix P: <urn:___param___#> .
     @prefix s223: <http://data.ashrae.org/standard223#> .
@@ -470,16 +470,16 @@ ahu-simple-clg-iso-sdh:
       args: {"name": "sa-in", "connection": "sa-in-connection"}
     - template: air-outlet-cp
       args: {"name": "sa-out", "connection": "sa-out-connection"}
-    - template: chilled-water-coil-sdh
+    - template: chilled-water-coil-hwr
       args: {"name": clg-coil, "air-in-connection": "clg-coil-air-in-duct", "in-mapsto": "sa-in", "air-out-connection": "clg-coil-air-out-duct",
              "water-in-connection": "clg-coil-water-in-pipe", "water-out-connection": "clg-coil-water-out-pipe"}
-    - template: variable-fan-sdh
+    - template: variable-fan-hwr
       args: {"name": "sa-fan", "in-connection": "clg-coil-air-out-duct", "out-connection": "sa-fan-out-duct"}
-    - template: damper-sdh
+    - template: damper-hwr
       args: {"name": "sa-iso-damper", "in-connection": "sa-fan-out-duct", "out-connection": "sa-iso-damper-out-duct", "out-mapsto": "sa-out"}
 
 
-ahu-simple-htg-sdh:
+ahu-simple-htg-hwr:
   body: >
     @prefix P: <urn:___param___#> .
     @prefix s223: <http://data.ashrae.org/standard223#> .
@@ -504,11 +504,11 @@ ahu-simple-htg-sdh:
       args: {"name": "sa-in", "connection": "sa-in-connection"}
     - template: air-outlet-cp
       args: {"name": "sa-out", "connection": "sa-out-connection"}
-    - template: hot-water-coil-sdh
+    - template: hot-water-coil-hwr
       args: {"name": htg-coil, "air-in-connection": "htg-coil-air-in-duct", "in-mapsto": "sa-in", "air-out-connection": "htg-coil-air-out-duct", "out-mapsto": "sa-out",
              "water-in-connection": "htg-coil-water-in-pipe", "water-out-connection": "htg-coil-water-out-pipe"}
 
-damper-sdh:
+damper-hwr:
   body: >
     @prefix P: <urn:___param___#> .
     @prefix s223: <http://data.ashrae.org/standard223#> .
@@ -537,7 +537,7 @@ damper-sdh:
       args: {"name": "position"}
 
 
-filter-sdh:
+filter-hwr:
   body: >
     @prefix P: <urn:___param___#> .
     @prefix s223: <http://data.ashrae.org/standard223#> .
@@ -565,7 +565,7 @@ filter-sdh:
       args: {"name": "differential-pressure-sensor", "whereHigh": "in", "whereLow": "out", "property": "differential-pressure"}
 
 
-variable-fan-sdh:
+variable-fan-hwr:
   body: >
     @prefix P: <urn:___param___#> .
     @prefix s223: <http://data.ashrae.org/standard223#> .
@@ -596,7 +596,7 @@ variable-fan-sdh:
     - template: power-consumption
       args: {"name": "power"}
 
-water-equipment-sdh:
+water-equipment-hwr:
   body: >
     @prefix P: <urn:___param___#> .
     @prefix s223: <http://data.ashrae.org/standard223#> .
@@ -622,7 +622,7 @@ water-equipment-sdh:
     - template: water-temperature
       args: {"name": "water-out-temp"}
 
-steam-to-water-hx-sdh:
+steam-to-water-hx-hwr:
   body: >
     @prefix P: <urn:___param___#> .
     @prefix s223: <http://data.ashrae.org/standard223#> .
@@ -652,7 +652,7 @@ steam-to-water-hx-sdh:
       args: {"name": "steam-out", "connection": "steam-out-connection"}
 
 
-hot-water-coil-sdh:
+hot-water-coil-hwr:
   body: >
     @prefix P: <urn:___param___#> .
     @prefix s223: <http://data.ashrae.org/standard223#> .
@@ -703,17 +703,17 @@ hot-water-coil-sdh:
       args: {"name": "water-in-temp"}
     - template: water-temperature
       args: {"name": "water-out-temp"}
-    - template: sensor-sdh
+    - template: sensor-hwr
       args: {"name": "water-in-temp-sensor", "property": "water-in-temp", "where": "water-in"}
-    - template: sensor-sdh
+    - template: sensor-hwr
       args: {"name": "water-out-temp-sensor", "property": "water-out-temp", "where": "water-out"}
-    - template: sensor-sdh
+    - template: sensor-hwr
       args: {"name": "air-in-temp-sensor", "property": "air-in-temp", "where": "air-in"}
-    - template: sensor-sdh
+    - template: sensor-hwr
       args: {"name": "air-out-temp-sensor", "property": "air-out-temp", "where": "air-out"}
 
 
-chilled-water-coil-sdh:
+chilled-water-coil-hwr:
   body: >
     @prefix P: <urn:___param___#> .
     @prefix s223: <http://data.ashrae.org/standard223#> .
@@ -764,11 +764,11 @@ chilled-water-coil-sdh:
       args: {"name": "water-in-temp"}
     - template: water-temperature
       args: {"name": "water-out-temp"}
-    - template: sensor-sdh
+    - template: sensor-hwr
       args: {"name": "water-in-temp-sensor", "property": "water-in-temp", "where": "water-in"}
-    - template: sensor-sdh
+    - template: sensor-hwr
       args: {"name": "water-out-temp-sensor", "property": "water-out-temp", "where": "water-out"}
-    - template: sensor-sdh
+    - template: sensor-hwr
       args: {"name": "air-in-temp-sensor", "property": "air-in-temp", "where": "air-in"}
-    - template: sensor-sdh
+    - template: sensor-hwr
       args: {"name": "air-out-temp-sensor", "property": "air-out-temp", "where": "air-out"}

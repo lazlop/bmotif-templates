@@ -1,6 +1,0 @@
-# no inverse of hasproperty in s223, and my SHACL builder is a little stupid about multiple subjects. 
-has-property:
-  body: >
-    @prefix p: <urn:___param___#> .
-    @prefix s223: <http://data.ashrae.org/standard223#> .
-    p:name s223:hasProperty p:target .

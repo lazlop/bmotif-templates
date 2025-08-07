@@ -1,0 +1,135 @@
+
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix s223: <http://example.org/s223#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix bacnet: <http://example.org/bacnet#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+s223:EnergyWaterSourceShape
+    a sh:NodeShape ;
+    sh:targetClass s223:Equipment ;
+    sh:property [
+        sh:path s223:hasRole ;
+        sh:hasValue s223:Role-Heating ;
+    ] ;
+    sh:property [
+        sh:path s223:hasRole ;
+        sh:hasValue s223:Role-Supply ;
+    ] ;
+    sh:property [
+        sh:path s223:hasRole ;
+        sh:hasValue s223:Role-Recirculating ;
+    ] ;
+.
+
+s223:EquipmentConsumersShape
+    a sh:NodeShape ;
+    sh:targetClass s223:Equipment ;
+    sh:property [
+        sh:path s223:cnx ;
+        sh:node [
+            sh:class s223:HeatingCoil ;
+        ] ;
+        sh:minCount 1 ;
+    ] ;
+.
+
+s223:EquipmentRelationshipShape
+    a sh:NodeShape ;
+    sh:targetClass s223:Equipment ;
+    sh:property [
+        sh:path s223:contains ;
+        sh:node [
+            sh:or (
+                [ sh:class s223:Pump ]
+                [ sh:class s223:VariableFrequencyDrive ]
+            )
+        ] ;
+    ] ;
+.
+s223:EquipmentPointShape
+    a sh:NodeShape ;
+    sh:targetClass s223:Equipment ;
+    sh:property [
+        sh:path s223:hasProperty ;
+        sh:node [
+            sh:property [
+                sh:path rdf:type ;
+                sh:or (
+                    [ sh:hasValue s223:QuantifiableActuatableProperty ]
+                    [ sh:hasValue s223:QuantifiableObservableProperty ]
+                )
+            ] ;
+            sh:property [
+                sh:path s223:hasRole ;
+                sh:minCount 1 ;
+            ] ;
+            sh:property [
+                sh:path qudt:hasUnit ;
+                sh:node [
+                    sh:property [
+                        sh:path qudt:hasQuantityKind ;
+                        sh:minCount 1 ;
+                    ] ;
+                ] ;
+            ] ;
+            sh:property [
+                sh:path s223:hasExternalReference ;
+                sh:node [
+                    sh:property [
+                        sh:path bacnet:object-name ;
+                        sh:minCount 1 ;
+                    ] ;
+                    sh:property [
+                        sh:path bacnet:object-identifier ;
+                        sh:minCount 1 ;
+                    ] ;
+                    sh:property [
+                        sh:path bacnet:device-identifier ;
+                        sh:minCount 1 ;
+                    ] ;
+                ] ;
+            ] ;
+        ] ;
+    ] ;
+.
+
+s223:ValvePointShape
+    a sh:NodeShape ;
+    sh:targetClass s223:Valve ;
+    sh:property [
+        sh:path s223:hasProperty ;
+        sh:node [
+            sh:property [
+                sh:path rdf:type ;
+                sh:hasValue s223:QuantifiableActuatableProperty ;
+            ] ;
+            sh:property [
+                sh:path s223:hasRole ;
+                sh:minCount 1 ;
+            ] ;
+            sh:property [
+                sh:path qudt:hasUnit ;
+                sh:minCount 1 ;
+            ] ;
+            sh:property [
+                sh:path s223:hasExternalReference ;
+                sh:node [
+                    sh:property [
+                        sh:path bacnet:object-name ;
+                        sh:minCount 1 ;
+                    ] ;
+                    sh:property [
+                        sh:path bacnet:object-identifier ;
+                        sh:minCount 1 ;
+                    ] ;
+                    sh:property [
+                        sh:path bacnet:device-identifier ;
+                        sh:minCount 1 ;
+                    ] ;
+                ] ;
+            ] ;
+        ] ;
+    ] ;
+.
