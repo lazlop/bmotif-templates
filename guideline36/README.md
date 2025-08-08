@@ -12,4 +12,4 @@ These shapes will also be documented in an informative annex to the ASHRAE 223P 
 
 ## Models
 
-Example system models were created using these templates. These models are also stored at models.open223.info
+Example system models were created using these templates. These templates have also been used to model a real large office building. All models are also stored at models.open223.info
