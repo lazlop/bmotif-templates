@@ -6,7 +6,7 @@ These templates were used to model a real building for the purpose of deploying 
 
 ## Shapes
 
-These shapes are used for validation that a system has the necessary equipment and points to deploy the hot water reset strategy. They align with queries within the application to ensure that those queries won't fail, and that the application can be successfully configured. They may be used to debug a model to ensure information is represented correctly to support portable application configuration. 
+These shapes are used for validation that a system has the necessary equipment and points to deploy the hot water reset strategy. They align with queries within the application to ensure that those queries won't fail, and that the application can be successfully configured. They may be used to debug a model to ensure information is represented correctly to support portable application configuration. These shapes were applied within a python application pipeline, and without this pipeline, may lead to irrelevant validation errors on equipment not needed for the reset application. 
 
 ## Models
 
