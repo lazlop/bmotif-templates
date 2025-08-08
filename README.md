@@ -9,8 +9,8 @@ The repository is organized into three main components:
 ### 📋 Guideline 36 (`guideline36/`)
 ASHRAE Guideline 36 compliant system templates and validation shapes.
 
-- **Templates**: Comprehensive models of G36 compliant systems based on system diagrams from Guideline 36's informative appendix
-- **Shapes**: SHACL constraints defining G36 data requirements for air-side equipment (Section 4), including validation rules and inference capabilities for equipment labeling
+- **Templates**: Comprehensive models of G36 compliant systems based on system diagrams from Guideline 36's informative appendix. These are example systems that would be able to support Guideline 36 control sequences for their system types. 
+- **Shapes**: SHACL constraints defining G36 data requirements for air-side equipment (Section 4), including validation rules and inference capabilities for equipment labeling to more easily query data and validate models of equipment that would support Guideline 36 control sequences. 
 - **Models**: Example system models created using these templates, also stored at models.open223.info
 
 modeled systems:
